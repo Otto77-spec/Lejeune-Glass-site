@@ -407,8 +407,3 @@ export default function LeJeuneGlass() {
 }
 ```
 
-After pasting, save with **Ctrl+S**, then in the terminal:
-```
-git add -A
-git commit -m "Fix all custom Tailwind classes"
-git push origin main --force
