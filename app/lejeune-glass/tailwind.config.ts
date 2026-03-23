@@ -1,6 +1,5 @@
-import type { Config } from 'tailwindcss'
-
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
 content: [
 './pages/**/*.{js,ts,jsx,tsx,mdx}',
 './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -17,8 +16,6 @@ colors: {
 'charcoal-light': '#1e1e1e',
 },
 fontFamily: {
-'cormorant': ['Cormorant Garamond', 'serif'],
-'montserrat': ['Montserrat', 'sans-serif'],
 'display': ['Cormorant Garamond', 'serif'],
 'body': ['Montserrat', 'sans-serif'],
 'serif': ['Cormorant Garamond', 'serif'],
@@ -34,5 +31,3 @@ letterSpacing: {
 },
 plugins: [],
 }
-
-export default config
