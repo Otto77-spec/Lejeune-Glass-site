@@ -3,6 +3,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@theme {
+--color-warm-white: #F8F6F2;
+--color-gold: #C8A96E;
+--color-gold-light: #D4B97E;
+--color-charcoal: #121212;
+--color-charcoal-mid: #1a1a1a;
+--color-charcoal-light: #1e1e1e;
+}
 
 /* ─────────────────────────────────────────────
 BASE — Your original overrides (preserved)
