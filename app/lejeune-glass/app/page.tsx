@@ -108,7 +108,7 @@ const pageStyles = `
 .nav-right { display: flex; gap: 32px; align-items: center; justify-content: flex-end; }
 .brand-logo {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.6rem;
+  font-size: 2.2rem;
   font-weight: 400;
   letter-spacing: 0.28em;
   color: white;
@@ -181,7 +181,7 @@ const pageStyles = `
   .menu-btn { display: flex; }
   .nav-wrap { padding: 16px 24px; }
   .nav-wrap.scrolled { padding: 14px 24px; }
-  .brand-logo { font-size: 1.3rem; letter-spacing: 0.2em; }
+  .brand-logo { font-size: 1.6rem; letter-spacing: 0.18em; }
 }
 `;
 
