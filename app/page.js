@@ -81,8 +81,25 @@ return () => window.removeEventListener("scroll", onScroll);
 }, []);
 
 const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
-const handleSubmit = (e) => { e.preventDefault(); setSubmitted(true); };
-
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        project: formData.service,
+        details: formData.message,
+      }),
+    });
+    if (res.ok) setSubmitted(true);
+  } catch (err) {
+    console.error(err);
+  }
+};
 return (
 <>
 <style>{pageStyles}</style>
