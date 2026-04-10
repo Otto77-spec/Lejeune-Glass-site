@@ -8,7 +8,7 @@ export async function POST(request) {
   try {
     // Email to Justin (notification)
     await resend.emails.send({
-      from: 'LeJeune Glass <noreply@lejeuneshowerglass.com>',
+     from: 'LeJeune Glass <onboarding@resend.dev>',
       to: 'justinlejeune422@gmail.com',
       subject: `New Estimate Request from ${name}`,
       html: `
