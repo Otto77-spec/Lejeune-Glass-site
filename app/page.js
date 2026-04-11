@@ -1,4 +1,5 @@
 "use client";
+import ReviewsSection from './components/ReviewsSection';
 import { useState, useEffect } from "react";
 
 const projects = [
@@ -168,7 +169,7 @@ BE THE BEACON
 ))}
 </div>
 </section>
-
+<ReviewsSection />
 {/* CONTACT */}
 <section id="contact" style={{ background: "#F8F8F8", padding: "112px 48px" }}>
 <div style={{ textAlign: "center", marginBottom: "72px" }}>
