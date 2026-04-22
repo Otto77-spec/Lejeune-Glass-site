@@ -159,11 +159,12 @@ body { background: #F2F1ED; }
 .svc-row:hover .svc-tag { color: rgba(200,169,110,0.6); border-color: rgba(200,169,110,0.25); }
 
 /* HARDWARE */
-.hw-section { position: relative; background: url('/images/hardware-2.jpg') center/cover fixed; min-height: 620px; display: flex; align-items: center; padding: 100px 64px; filter: brightness(1.18) saturate(0.72); }
-.hw-overlay { position: absolute; inset: 0; background: rgba(8,8,20,0.28); }
-.hw-inner { position: relative; z-index: 1; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.hw-section { position: relative; background: #08081a; min-height: 620px; display: flex; align-items: center; padding: 100px 64px; overflow: hidden; }
+.hw-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(1.18) saturate(0.72); z-index: 0; }
+.hw-overlay { position: absolute; inset: 0; background: rgba(8,8,20,0.28); z-index: 1; }
+.hw-inner { position: relative; z-index: 2; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
 .hw-watermark { position: absolute; left: -8px; bottom: -20px; font-family: 'Bebas Neue', sans-serif; font-size: clamp(7rem, 16vw, 14rem); color: rgba(255,255,255,0.05); line-height: 1; pointer-events: none; z-index: 0; white-space: nowrap; user-select: none; }
-.hw-list { position: relative; z-index: 1; }
+.hw-list { position: relative; z-index: 2; }
 .hw-item { display: block; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.92); text-shadow: 0 1px 14px rgba(0,0,0,0.7); opacity: 0; transform: translateY(16px); transition: opacity 0.4s ease, transform 0.4s ease; }
 .hw-item:first-child { border-top: 1px solid rgba(255,255,255,0.1); }
 .hw-item.animate { opacity: 1; transform: translateY(0); }
@@ -173,7 +174,8 @@ body { background: #F2F1ED; }
 .hw-headline.animate { opacity: 1; transform: scale(1); }
 .hw-body { font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 400; color: rgba(255,255,255,0.9); line-height: 1.9; margin-bottom: 20px; text-shadow: 0 1px 14px rgba(0,0,0,0.7); }
 @media (max-width: 768px) {
-  .hw-section { padding: 80px 24px; background-attachment: scroll; }
+  .hw-section { padding: 80px 24px; }
+  .hw-bg-img { object-fit: contain; object-position: center top; }
   .hw-inner { grid-template-columns: 1fr; gap: 48px; }
 }
 
@@ -336,7 +338,7 @@ body { background: #F2F1ED; }
   .svc-tag { display: none; }
 
   /* HARDWARE */
-  .hw-section { padding: 80px 20px; background-attachment: scroll; min-height: auto; }
+  .hw-section { padding: 80px 20px; min-height: auto; }
   .hw-inner { grid-template-columns: 1fr; gap: 48px; }
   .hw-label { font-size: 0.82rem; letter-spacing: 0.25em; margin-bottom: 20px; }
   .hw-headline { font-size: clamp(2rem, 8vw, 2.8rem); margin-bottom: 24px; }
@@ -821,6 +823,7 @@ export default function LeJeuneGlass() {
       {/* HARDWARE */}
       {/* ============================================================ */}
       <section id="products" className="hw-section" ref={hwSectionRef}>
+        <img src="/images/hardware-2.jpg" alt="" className="hw-bg-img" />
         <div className="hw-overlay" />
         <div className="hw-inner">
           <div className="hw-list">
