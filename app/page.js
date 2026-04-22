@@ -129,20 +129,34 @@ body { background: #F2F1ED; }
 .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.4rem, 2.8vw, 2.1rem); color: #F2F1ED; line-height: 1; letter-spacing: 0.1em; }
 .stat-label { font-family: 'Montserrat', sans-serif; font-size: 0.52rem; font-weight: 400; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 8px; }
 
+/* MARQUEE */
+@keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-strip { background: #0a0a0a; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 18px 0; overflow: hidden; }
+.marquee-track { display: flex; gap: 0; white-space: nowrap; animation: marqueeScroll 28s linear infinite; }
+.marquee-track:hover { animation-play-state: paused; }
+.marquee-item { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.28em; color: rgba(255,255,255,0.18); padding: 0 48px; flex-shrink: 0; }
+.marquee-dot { color: #C8A96E; opacity: 0.5; padding: 0; }
+
 /* SERVICES */
-.services-section { background: #0a0a0a; padding: 100px 0; overflow: hidden; position: relative; }
-.services-bg-word { position: absolute; bottom: -2rem; left: 50%; transform: translateX(-50%); font-family: 'Bebas Neue', sans-serif; font-size: clamp(8rem, 20vw, 18rem); color: rgba(255,255,255,0.03); white-space: nowrap; pointer-events: none; user-select: none; line-height: 1; }
-.services-header { padding: 0 64px 72px; }
+.services-section { background: #0a0a0a; padding: 100px 0 120px; overflow: hidden; position: relative; }
+.services-bg-word { position: absolute; bottom: -2rem; left: 50%; transform: translateX(-50%); font-family: 'Bebas Neue', sans-serif; font-size: clamp(8rem, 22vw, 20rem); color: rgba(255,255,255,0.025); white-space: nowrap; pointer-events: none; user-select: none; line-height: 1; letter-spacing: 0.05em; }
+.services-header { padding: 0 64px 80px; }
 .services-eyebrow-line { height: 1px; background: rgba(255,255,255,0.12); width: 0; margin-bottom: 20px; }
 .services-title { font-family: 'Bodoni Moda', 'Playfair Display', Georgia, serif; font-size: clamp(3rem, 7vw, 6rem); font-weight: 400; color: white; line-height: 0.92; letter-spacing: -0.01em; }
-.services-title em { font-style: italic; color: rgba(255,255,255,0.45); }
-.svc-row { display: grid; grid-template-columns: 80px 1fr 1fr auto; align-items: start; gap: 32px; padding: 36px 64px; border-top: 1px solid rgba(255,255,255,0.07); cursor: default; transition: background 0.4s ease; position: relative; }
-.svc-row:last-child { border-bottom: 1px solid rgba(255,255,255,0.07); }
-.svc-row:hover { background: rgba(255,255,255,0.03); }
-.svc-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: rgba(255,255,255,0.2); letter-spacing: 0.1em; padding-top: 4px; }
-.svc-name { font-family: 'Bodoni Moda', 'Playfair Display', Georgia, serif; font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 400; color: white; line-height: 1.2; }
-.svc-desc { font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 300; color: rgba(255,255,255,0.5); line-height: 1.85; max-width: 440px; }
-.svc-tag { font-family: 'Montserrat', sans-serif; font-size: 0.56rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.2); white-space: nowrap; padding-top: 8px; }
+.services-title em { font-style: italic; color: rgba(255,255,255,0.35); }
+.svc-row { display: grid; grid-template-columns: 72px 1fr 1fr auto; align-items: center; gap: 40px; padding: 38px 64px; border-top: 1px solid rgba(255,255,255,0.06); position: relative; overflow: hidden; transition: padding-left 0.6s cubic-bezier(0.22,1,0.36,1), background 0.5s ease; }
+.svc-row:last-child { border-bottom: 1px solid rgba(255,255,255,0.06); }
+.svc-row::before { content: ''; position: absolute; left: 0; top: 10%; bottom: 10%; width: 2px; background: linear-gradient(to bottom, transparent, #C8A96E, transparent); transform: scaleY(0); transform-origin: center; transition: transform 0.5s cubic-bezier(0.22,1,0.36,1); }
+.svc-row:hover::before { transform: scaleY(1); }
+.svc-row:hover { padding-left: 80px; background: rgba(255,255,255,0.02); }
+.svc-num { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: rgba(255,255,255,0.18); letter-spacing: 0.12em; transition: color 0.5s ease; }
+.svc-row:hover .svc-num { color: rgba(200,169,110,0.7); }
+.svc-name { font-family: 'Bodoni Moda', 'Playfair Display', Georgia, serif; font-size: clamp(1.3rem, 2.2vw, 1.85rem); font-weight: 400; color: white; line-height: 1.2; transition: letter-spacing 0.5s ease; }
+.svc-row:hover .svc-name { letter-spacing: 0.005em; }
+.svc-desc { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 300; color: rgba(255,255,255,0.35); line-height: 1.9; max-width: 400px; transition: color 0.5s ease, transform 0.5s ease; transform: translateY(3px); }
+.svc-row:hover .svc-desc { color: rgba(255,255,255,0.7); transform: translateY(0); }
+.svc-tag { font-family: 'Montserrat', sans-serif; font-size: 0.52rem; font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(255,255,255,0.15); white-space: nowrap; border: 1px solid rgba(255,255,255,0.08); padding: 6px 14px; transition: color 0.5s ease, border-color 0.5s ease; }
+.svc-row:hover .svc-tag { color: rgba(200,169,110,0.6); border-color: rgba(200,169,110,0.25); }
 
 /* HARDWARE */
 .hw-section { position: relative; background: url('/images/hardware-2.jpg') center/cover fixed; min-height: 620px; display: flex; align-items: center; padding: 100px 64px; filter: brightness(1.18) saturate(0.72); }
@@ -305,13 +319,17 @@ body { background: #F2F1ED; }
   .stat-num { font-size: clamp(1.8rem, 8vw, 2.4rem); }
   .stat-label { font-size: 0.72rem; letter-spacing: 0.2em; }
 
+  /* MARQUEE */
+  .marquee-item { font-size: 0.95rem; padding: 0 32px; }
+
   /* SERVICES */
-  .services-section { padding: 64px 0; }
+  .services-section { padding: 64px 0 80px; }
   .services-header { padding: 0 20px 48px; }
   .services-title { font-size: clamp(2.4rem, 10vw, 3.6rem); }
-  .svc-row { grid-template-columns: 48px 1fr; grid-template-rows: auto auto; gap: 12px 16px; padding: 28px 20px; }
-  .svc-name { font-size: clamp(1.2rem, 5vw, 1.6rem); }
-  .svc-desc { font-size: 0.92rem; line-height: 1.75; grid-column: 2; max-width: 100%; }
+  .svc-row { grid-template-columns: 44px 1fr; grid-template-rows: auto auto; gap: 10px 16px; padding: 26px 20px; align-items: start; }
+  .svc-row:hover { padding-left: 28px; }
+  .svc-name { font-size: clamp(1.15rem, 5vw, 1.5rem); }
+  .svc-desc { font-size: 0.9rem; line-height: 1.75; grid-column: 2; max-width: 100%; }
   .svc-tag { display: none; }
 
   /* HARDWARE */
@@ -753,6 +771,16 @@ export default function LeJeuneGlass() {
         <div className="stat-item">
           <div className="stat-num">Same Week</div>
           <div className="stat-label">Scheduling Available</div>
+        </div>
+      </div>
+
+      {/* ============================================================ */}
+      {/* MARQUEE */}
+      <div className="marquee-strip">
+        <div className="marquee-track">
+          {["Custom Showers","Architectural Railings","Wine Rooms","Sauna Glass","Commercial Glass","Barn Door","Neo-Angle","Inline Glass","Open Concept","Frameless","Semi-Frameless","Custom Showers","Architectural Railings","Wine Rooms","Sauna Glass","Commercial Glass","Barn Door","Neo-Angle","Inline Glass","Open Concept","Frameless","Semi-Frameless"].map((item, i) => (
+            <span key={i} className="marquee-item">{item}{i % 2 === 1 ? <span className="marquee-dot"> ◆</span> : null}</span>
+          ))}
         </div>
       </div>
 
