@@ -41,6 +41,60 @@ const services = [
 
 const pageStyles = `
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@300;400;500&display=swap');
+@keyframes bdFadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes bdShimmer {
+  0%   { background-position: 100% 50%; }
+  100% { background-position: -100% 50%; }
+}
+@keyframes shardIn {
+  0%   { opacity: 0; transform: var(--shard-from); }
+  60%  { opacity: 1; }
+  100% { opacity: 1; transform: translate(0,0) rotate(0deg) scale(1); }
+}
+.bd-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: #000;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: flex-start; overflow-y: auto; overflow-x: hidden;
+  padding: 60px 24px 80px; text-align: center;
+  transition: opacity 1.2s ease;
+}
+.bd-overlay.fading { opacity: 0; pointer-events: none; }
+.bd-shard-wrap { position: relative; width: 280px; height: 170px; margin-bottom: 24px; flex-shrink: 0; }
+.bd-shard {
+  position: absolute;
+  background: linear-gradient(135deg, rgba(200,169,110,0.9), rgba(232,207,160,0.6), rgba(200,169,110,0.4));
+  border: 1px solid rgba(200,169,110,0.3);
+  opacity: 0;
+  animation: shardIn 1.8s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.bd-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.6rem, 5vw, 2.8rem);
+  font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase;
+  background: linear-gradient(90deg, #C8A96E 0%, #e8cfa0 40%, #fff8ee 50%, #e8cfa0 60%, #C8A96E 100%);
+  background-size: 300%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: bdFadeUp 1s ease 1.4s both, bdShimmer 4s linear 2.5s infinite;
+}
+.bd-tagline {
+  font-family: 'Montserrat', sans-serif; font-size: 0.65rem;
+  letter-spacing: 0.25em; color: rgba(200,169,110,0.55); text-transform: uppercase;
+  margin-top: 10px; animation: bdFadeUp 1s ease 1.7s both;
+}
+.bd-msg { animation: bdFadeUp 1s ease 2.1s both; max-width: 580px; }
+.bd-enter {
+  margin-top: 36px; animation: bdFadeUp 1s ease 2.6s both;
+  border: 1px solid #C8A96E; background: transparent;
+  color: #C8A96E; font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+  padding: 14px 48px; cursor: pointer; white-space: nowrap;
+  transition: color 0.4s ease, background 0.4s ease;
+}
+.bd-enter:hover { background: #C8A96E; color: #121212; }
 @keyframes goldLine {
   from { width: 0; opacity: 0; }
   to { width: 40px; opacity: 1; }
@@ -186,10 +240,22 @@ const pageStyles = `
 `;
 
 export default function LeJeuneGlass() {
+  const [showOverlay, setShowOverlay] = useState(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("happy-birthday") === "justin") setShowOverlay(true);
+  }, []);
+  const [overlayFading, setOverlayFading] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", service: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+
+  const enterSite = () => {
+    setOverlayFading(true);
+    setTimeout(() => setShowOverlay(false), 1200);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -201,9 +267,62 @@ export default function LeJeuneGlass() {
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
   const handleSubmit = (e) => { e.preventDefault(); setSubmitted(true); };
 
+  const shards = [
+    { w:80, h:90, t:10, l:50, clip:"polygon(50% 0%,100% 100%,0% 100%)", from:"translate(-120px,-80px) rotate(-45deg) scale(0.3)", delay:"0.1s" },
+    { w:60, h:70, t:0,  l:120, clip:"polygon(0 0,100% 40%,60% 100%)",   from:"translate(100px,-60px) rotate(60deg) scale(0.2)",  delay:"0.25s" },
+    { w:90, h:80, t:30, l:160, clip:"polygon(20% 0%,100% 0%,80% 100%,0% 80%)", from:"translate(150px,40px) rotate(30deg) scale(0.3)", delay:"0.15s" },
+    { w:70, h:100,t:80, l:20,  clip:"polygon(30% 0%,100% 20%,70% 100%,0% 90%)", from:"translate(-100px,80px) rotate(-30deg) scale(0.2)", delay:"0.35s" },
+    { w:100,h:60, t:110,l:90,  clip:"polygon(0 0,100% 30%,85% 100%,15% 80%)",  from:"translate(20px,120px) rotate(15deg) scale(0.3)",  delay:"0.2s" },
+    { w:55, h:65, t:60, l:105, clip:"polygon(50% 0%,100% 100%,0% 85%)",  from:"translate(-30px,-90px) rotate(-20deg) scale(0.4)", delay:"0.4s" },
+    { w:65, h:75, t:85, l:180, clip:"polygon(10% 0%,90% 10%,100% 90%,0% 100%)", from:"translate(130px,60px) rotate(50deg) scale(0.2)", delay:"0.3s" },
+  ];
+
   return (
     <>
       <style>{pageStyles}</style>
+
+      {showOverlay && (
+        <div className={`bd-overlay${overlayFading ? " fading" : ""}`}>
+          <div className="bd-shard-wrap">
+            {shards.map((s, i) => (
+              <div key={i} className="bd-shard" style={{
+                width: s.w, height: s.h, top: s.t, left: s.l,
+                clipPath: s.clip,
+                ["--shard-from" as any]: s.from,
+                animationDelay: s.delay,
+              }} />
+            ))}
+          </div>
+
+          <div className="bd-name">LeJeune &amp; Glass</div>
+          <div className="bd-tagline">Metro Atlanta · Est. 2018</div>
+
+          <div className="bd-msg">
+            <p style={{fontFamily:"Cormorant Garamond, Georgia, serif", fontSize:"clamp(1.4rem,3.5vw,2.2rem)", fontWeight:300, background:"linear-gradient(90deg,#C8A96E,#e8cfa0,#C8A96E)", backgroundSize:"200%", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text", animation:"bdShimmer 3s linear infinite", marginTop:32}}>
+              Happy Birthday, Justin
+            </p>
+            <p style={{fontFamily:"Cormorant Garamond, Georgia, serif", fontSize:"clamp(0.95rem,2vw,1.15rem)", fontWeight:300, color:"rgba(248,246,242,0.8)", lineHeight:1.9, letterSpacing:"0.04em", fontStyle:"italic", marginTop:24}}>
+              You are the best friend anyone could have<br/>the pleasure of knowing — and I get extra.
+            </p>
+            <p style={{fontFamily:"Cormorant Garamond, Georgia, serif", fontSize:"clamp(0.95rem,2vw,1.15rem)", fontWeight:300, color:"rgba(248,246,242,0.8)", lineHeight:1.9, letterSpacing:"0.04em", fontStyle:"italic", marginTop:16}}>
+              Working on a personal project with you has uplifted not only my life,<br/>
+              but I hope you know that every day is a gift —
+            </p>
+            <p style={{fontFamily:"Cormorant Garamond, Georgia, serif", fontSize:"clamp(1rem,2.2vw,1.3rem)", fontWeight:400, color:"rgba(248,246,242,0.95)", lineHeight:1.9, letterSpacing:"0.04em", fontStyle:"italic", marginTop:16}}>
+              and today, in <span style={{color:"#C8A96E"}}>&apos;75</span>, the universe gifted us <em>you.</em>
+            </p>
+            <p style={{fontFamily:"Cormorant Garamond, Georgia, serif", fontSize:"clamp(0.95rem,2vw,1.15rem)", fontWeight:300, color:"rgba(248,246,242,0.75)", lineHeight:1.9, letterSpacing:"0.04em", fontStyle:"italic", marginTop:16}}>
+              I wouldn&apos;t want to live in a world where there was no you.
+            </p>
+            <div style={{width:60, height:1, background:"#C8A96E", margin:"24px auto", opacity:0.5}} />
+            <p style={{fontFamily:"Montserrat, sans-serif", fontSize:"0.6rem", letterSpacing:"0.35em", color:"#C8A96E", textTransform:"uppercase", opacity:0.85}}>
+              With love — Happy Birthday, Dear Justin
+            </p>
+          </div>
+
+          <button className="bd-enter" onClick={enterSite}>Enter the Experience</button>
+        </div>
+      )}
 
       <nav className={`nav-wrap${scrolled ? " scrolled" : ""}`}>
         <div className="nav-inner">
@@ -334,7 +453,7 @@ export default function LeJeuneGlass() {
             </div>
             <div style={{ marginTop: "40px", paddingTop: "32px", borderTop: "1px solid rgba(18,18,18,0.1)" }}>
               <p style={{ fontSize: "0.8rem", fontWeight: 300, color: "#666", lineHeight: 1.9, letterSpacing: "0.04em", fontStyle: "italic" }}>
-                From measurement to final installation, every panel is cut, fitted, and finished by our own team — never subcontracted.
+                From precision measurement to final installation, every job is handled personally by our own team — never subcontracted, never compromised.
               </p>
             </div>
           </div>
