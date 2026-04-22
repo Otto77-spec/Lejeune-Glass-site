@@ -130,15 +130,19 @@ body { background: #F2F1ED; }
 .stat-label { font-family: 'Montserrat', sans-serif; font-size: 0.52rem; font-weight: 400; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 8px; }
 
 /* SERVICES */
-.services-section { background: #0a0a0a; padding: 100px 64px; }
+.services-section { background: #0a0a0a; padding: 100px 0; overflow: hidden; position: relative; }
+.services-bg-word { position: absolute; bottom: -2rem; left: 50%; transform: translateX(-50%); font-family: 'Bebas Neue', sans-serif; font-size: clamp(8rem, 20vw, 18rem); color: rgba(255,255,255,0.03); white-space: nowrap; pointer-events: none; user-select: none; line-height: 1; }
+.services-header { padding: 0 64px 72px; }
 .services-eyebrow-line { height: 1px; background: rgba(255,255,255,0.12); width: 0; margin-bottom: 20px; }
-.services-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; background: rgba(255,255,255,0.05); margin-top: 0; }
-.service-card { background: #0a0a0a; padding: 40px 24px; border-right: 1px solid rgba(255,255,255,0.05); transition: background 0.3s; }
-.service-card:hover { background: #111; }
-.service-line { width: 28px; height: 1px; background: rgba(255,255,255,0.2); margin-bottom: 20px; transition: width 0.3s; }
-.service-card:hover .service-line { width: 48px; }
-.service-name { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 400; color: white; letter-spacing: 0.04em; line-height: 1.4; margin-bottom: 14px; }
-.service-desc { font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 400; color: rgba(255,255,255,0.75); line-height: 1.85; }
+.services-title { font-family: 'Bodoni Moda', 'Playfair Display', Georgia, serif; font-size: clamp(3rem, 7vw, 6rem); font-weight: 400; color: white; line-height: 0.92; letter-spacing: -0.01em; }
+.services-title em { font-style: italic; color: rgba(255,255,255,0.45); }
+.svc-row { display: grid; grid-template-columns: 80px 1fr 1fr auto; align-items: start; gap: 32px; padding: 36px 64px; border-top: 1px solid rgba(255,255,255,0.07); cursor: default; transition: background 0.4s ease; position: relative; }
+.svc-row:last-child { border-bottom: 1px solid rgba(255,255,255,0.07); }
+.svc-row:hover { background: rgba(255,255,255,0.03); }
+.svc-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: rgba(255,255,255,0.2); letter-spacing: 0.1em; padding-top: 4px; }
+.svc-name { font-family: 'Bodoni Moda', 'Playfair Display', Georgia, serif; font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 400; color: white; line-height: 1.2; }
+.svc-desc { font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 300; color: rgba(255,255,255,0.5); line-height: 1.85; max-width: 440px; }
+.svc-tag { font-family: 'Montserrat', sans-serif; font-size: 0.56rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.2); white-space: nowrap; padding-top: 8px; }
 
 /* HARDWARE */
 .hw-section { position: relative; background: url('/images/hardware-2.jpg') center/cover fixed; min-height: 620px; display: flex; align-items: center; padding: 100px 64px; filter: brightness(1.18) saturate(0.72); }
@@ -302,11 +306,13 @@ body { background: #F2F1ED; }
   .stat-label { font-size: 0.72rem; letter-spacing: 0.2em; }
 
   /* SERVICES */
-  .services-section { padding: 64px 20px; }
-  .services-grid { grid-template-columns: 1fr; gap: 2px; }
-  .service-card { padding: 28px 20px; }
-  .service-name { font-size: 1rem; line-height: 1.4; }
-  .service-desc { font-size: 0.95rem; line-height: 1.8; }
+  .services-section { padding: 64px 0; }
+  .services-header { padding: 0 20px 48px; }
+  .services-title { font-size: clamp(2.4rem, 10vw, 3.6rem); }
+  .svc-row { grid-template-columns: 48px 1fr; grid-template-rows: auto auto; gap: 12px 16px; padding: 28px 20px; }
+  .svc-name { font-size: clamp(1.2rem, 5vw, 1.6rem); }
+  .svc-desc { font-size: 0.92rem; line-height: 1.75; grid-column: 2; max-width: 100%; }
+  .svc-tag { display: none; }
 
   /* HARDWARE */
   .hw-section { padding: 72px 20px; background-attachment: scroll; min-height: auto; }
@@ -625,6 +631,19 @@ export default function LeJeuneGlass() {
       </section>
 
       {/* ============================================================ */}
+      {/* STATEMENT */}
+      {/* ============================================================ */}
+      <section className="statement">
+        <span className="statement-tag">LeJeune Glass</span>
+        <div className="statement-text" ref={stmtTextRef}>
+          <span className="stmt-line">Seven years.</span>
+          <span className="stmt-line">Five hundred projects.</span>
+          <span className="stmt-line">One standard: yours.</span>
+        </div>
+        <span className="statement-tag">Metro Atlanta</span>
+      </section>
+
+      {/* ============================================================ */}
       {/* PROCESS */}
       {/* ============================================================ */}
       <section id="process" className="process">
@@ -741,18 +760,28 @@ export default function LeJeuneGlass() {
       {/* SERVICES */}
       {/* ============================================================ */}
       <section id="services" className="services-section" ref={servicesRef}>
-        <div className="services-eyebrow-line" ref={servicesLineRef} />
-        <div className="eyebrow" style={{ color: "rgba(255,255,255,0.55)" }}>◆ What We Do</div>
-        <div className="section-heading reveal" ref={addReveal} style={{ color: "white", marginTop: "32px", marginBottom: "48px", fontSize: "clamp(2rem, 4vw, 3rem)", textAlign: "center" }}>Any Space. Any Glass.</div>
-        <div className="services-grid">
-          {services.map((s, i) => (
-            <div key={i} className="service-card reveal" ref={addReveal}>
-              <div className="service-line" />
-              <div className="service-name">{s.name}</div>
-              <div className="service-desc">{s.desc}</div>
-            </div>
-          ))}
+        <div className="services-bg-word">ANY GLASS</div>
+        <div className="services-header">
+          <div className="services-eyebrow-line" ref={servicesLineRef} />
+          <div className="eyebrow" style={{ color: "rgba(255,255,255,0.4)" }}>◆ What We Do</div>
+          <div className="services-title reveal" ref={addReveal} style={{ marginTop: "24px" }}>
+            Any Space.<br /><em>Any Glass.</em>
+          </div>
         </div>
+        {[
+          { num: "01", name: "Custom Shower Solutions", desc: "Every shape, every style — 90°, neo-angle, in-line, barn door, framed, and semi-frameless. If you can imagine it, we install it.", tag: "Showers" },
+          { num: "02", name: "Architectural Railings", desc: "Glass railings for staircases, hallways, balconies, and custom interior spaces — clean, modern, engineered to elevate your design.", tag: "Railings" },
+          { num: "03", name: "Luxury Wine & Display Rooms", desc: "Showcase your collection in a climate-controlled, visually stunning glass enclosure — fully custom, fully precise, fully show-stopping.", tag: "Wine Rooms" },
+          { num: "04", name: "Sauna & Gym Glass Walls", desc: "Floor-to-ceiling glass panels for saunas, home gyms, and wellness spaces — open concept that maximizes light, space, and movement.", tag: "Wellness" },
+          { num: "05", name: "Residential & Commercial", desc: "Floor-to-ceiling panels, partitions, doors, nooks, studios — any architectural application, tailored to your exact vision.", tag: "Commercial" },
+        ].map((s, i) => (
+          <div key={i} className="svc-row reveal" ref={addReveal}>
+            <div className="svc-num">{s.num}</div>
+            <div className="svc-name">{s.name}</div>
+            <div className="svc-desc">{s.desc}</div>
+            <div className="svc-tag">{s.tag}</div>
+          </div>
+        ))}
       </section>
 
       {/* ============================================================ */}
