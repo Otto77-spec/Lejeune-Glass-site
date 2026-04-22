@@ -272,107 +272,113 @@ body { background: #F2F1ED; }
 /* MOBILE */
 @media (max-width: 768px) {
   /* NAV */
-  .nav-wrap { padding: 14px 20px; }
+  .nav-wrap { padding: 16px 20px; }
   .nav-links { display: none; }
   .hamburger { display: flex; }
-  .nav-logo-name { font-size: 1rem; }
+  .nav-logo-name { font-size: 1.1rem; }
 
   /* HERO */
   .hero { padding: 0 24px; justify-content: center; }
-  .hero-beacon { font-size: 0.65rem; letter-spacing: 0.35em; }
+  .hero-title { font-size: clamp(3.2rem, 18vw, 5rem); }
+  .hero-beacon { font-size: 0.8rem; letter-spacing: 0.4em; }
 
   /* STATEMENT */
-  .statement { padding: 48px 24px; flex-direction: column; gap: 20px; }
-  .statement-tag { writing-mode: horizontal-tb; font-size: 0.65rem; }
-  .statement-text { font-size: clamp(1.6rem, 6vw, 2.2rem); }
+  .statement { padding: 64px 24px; flex-direction: column; gap: 16px; }
+  .statement-tag { display: none; }
+  .statement-text { font-size: clamp(1.8rem, 7vw, 2.6rem); line-height: 1.15; }
 
   /* PROCESS */
-  .process { padding: 64px 20px; }
-  .eyebrow { font-size: 0.72rem; letter-spacing: 0.25em; }
-  .section-heading { font-size: clamp(1.8rem, 7vw, 2.4rem); margin-bottom: 36px; }
-  .steps { grid-template-columns: 1fr; gap: 2px; }
-  .step { padding: 32px 20px; }
-  .step-num { font-size: 2.4rem; }
-  .step-name { font-size: 0.8rem; letter-spacing: 0.15em; }
-  .step-desc { font-size: 1rem; line-height: 1.75; }
+  .process { padding: 80px 20px; }
+  .eyebrow { font-size: 0.85rem; letter-spacing: 0.22em; }
+  .section-heading { font-size: clamp(2rem, 8vw, 2.8rem); margin-bottom: 40px; line-height: 1.1; }
+  .steps { grid-template-columns: 1fr; gap: 3px; }
+  .step { padding: 36px 24px; }
+  .step-num { font-size: 3rem; margin-bottom: 14px; }
+  .step-name { font-size: 0.9rem; letter-spacing: 0.18em; margin-bottom: 10px; }
+  .step-desc { font-size: 1.05rem; line-height: 1.8; }
 
   /* ABOUT */
-  .about-section { padding: 64px 20px; flex-direction: column; gap: 32px; }
+  .about-section { padding: 80px 20px; flex-direction: column; gap: 36px; }
   .about-photo { width: 100%; }
-  .about-photo img { height: 280px; }
+  .about-photo img { height: 320px; }
   .about-content { padding-top: 0; }
-  .about-heading { font-size: clamp(1.6rem, 6vw, 2.2rem); margin-bottom: 24px; }
-  .about-body { font-size: 1rem; line-height: 1.85; margin-bottom: 14px; }
-  .about-closing { font-size: 1.05rem; }
+  .about-heading { font-size: clamp(1.8rem, 7vw, 2.4rem); margin-bottom: 28px; }
+  .about-body { font-size: 1.05rem; line-height: 1.9; margin-bottom: 16px; }
+  .about-closing { font-size: 1.15rem; line-height: 1.7; }
 
   /* GALLERY */
-  .gallery-section { padding: 64px 20px; }
-  .gallery-item { padding: 18px 0; }
-  .gallery-name { font-size: 0.9rem; letter-spacing: 0.12em; }
+  .gallery-section { padding: 80px 20px; }
+  .gallery-list { margin-top: 36px; }
+  .gallery-item { padding: 22px 0; }
+  .gallery-name { font-size: 1rem; letter-spacing: 0.1em; }
   .gallery-tags { display: none; }
-  .gallery-arrow { font-size: 0.8rem; }
+  .gallery-arrow { font-size: 1rem; }
 
   /* STATS */
-  .stats-strip { padding: 32px 16px; flex-direction: column; gap: 0; }
-  .stat-item { padding: 18px 24px; width: 100%; }
+  .stats-strip { padding: 0; flex-direction: column; gap: 0; }
+  .stat-item { padding: 28px 24px; width: 100%; }
   .stat-item + .stat-item { border-left: none; border-top: 1px solid rgba(255,255,255,0.1); }
-  .stat-num { font-size: clamp(1.8rem, 8vw, 2.4rem); }
-  .stat-label { font-size: 0.72rem; letter-spacing: 0.2em; }
+  .stat-num { font-size: clamp(2.2rem, 9vw, 3rem); }
+  .stat-label { font-size: 0.82rem; letter-spacing: 0.2em; margin-top: 6px; }
 
   /* MARQUEE */
-  .marquee-item { font-size: 0.95rem; padding: 0 32px; }
+  .marquee-item { font-size: 1rem; padding: 0 28px; }
 
   /* SERVICES */
-  .services-section { padding: 64px 0 80px; }
-  .services-header { padding: 0 20px 48px; }
-  .services-title { font-size: clamp(2.4rem, 10vw, 3.6rem); }
-  .svc-row { grid-template-columns: 44px 1fr; grid-template-rows: auto auto; gap: 10px 16px; padding: 26px 20px; align-items: start; }
+  .services-section { padding: 80px 0 100px; }
+  .services-header { padding: 0 20px 56px; }
+  .services-title { font-size: clamp(2.6rem, 11vw, 4rem); }
+  .svc-row { grid-template-columns: 52px 1fr; grid-template-rows: auto auto; gap: 12px 16px; padding: 32px 20px; align-items: start; }
   .svc-row:hover { padding-left: 28px; }
-  .svc-name { font-size: clamp(1.15rem, 5vw, 1.5rem); }
-  .svc-desc { font-size: 0.9rem; line-height: 1.75; grid-column: 2; max-width: 100%; }
+  .svc-num { font-size: 1.1rem; }
+  .svc-name { font-size: clamp(1.2rem, 5.5vw, 1.6rem); }
+  .svc-desc { font-size: 1rem; line-height: 1.8; grid-column: 2; max-width: 100%; color: rgba(255,255,255,0.6); }
   .svc-tag { display: none; }
 
   /* HARDWARE */
-  .hw-section { padding: 72px 20px; background-attachment: scroll; min-height: auto; }
-  .hw-inner { grid-template-columns: 1fr; gap: 40px; }
-  .hw-label { font-size: 0.72rem; letter-spacing: 0.25em; }
-  .hw-item { font-size: 0.88rem; letter-spacing: 0.15em; padding: 12px 0; }
-  .hw-body { font-size: 1rem; line-height: 1.8; }
-  .hw-watermark { font-size: clamp(4rem, 22vw, 8rem); }
+  .hw-section { padding: 80px 20px; background-attachment: scroll; min-height: auto; }
+  .hw-inner { grid-template-columns: 1fr; gap: 48px; }
+  .hw-label { font-size: 0.82rem; letter-spacing: 0.25em; margin-bottom: 20px; }
+  .hw-headline { font-size: clamp(2rem, 8vw, 2.8rem); margin-bottom: 24px; }
+  .hw-item { font-size: 0.95rem; letter-spacing: 0.15em; padding: 14px 0; }
+  .hw-body { font-size: 1.05rem; line-height: 1.85; }
+  .hw-watermark { display: none; }
 
   /* REVIEWS */
-  .review-bar { padding: 40px 20px; flex-direction: column; gap: 20px; }
+  .review-bar { padding: 56px 20px; flex-direction: column; gap: 24px; }
   .review-line { width: 40px; height: 1px; }
-  .review-attr { font-size: 0.75rem; letter-spacing: 0.15em; }
+  .review-quote-text { font-size: clamp(1.2rem, 5vw, 1.6rem); }
+  .review-attr { font-size: 0.85rem; letter-spacing: 0.15em; margin-top: 12px; }
 
   /* CONTACT */
   .contact-section { height: auto; min-height: 100vh; }
-  .contact-form-wrap { padding: 96px 20px 120px; }
-  .contact-heading { font-size: clamp(1.6rem, 7vw, 2.2rem); }
-  .contact-sub { font-size: 0.88rem; letter-spacing: 0.06em; margin-bottom: 20px; }
-  .info-row { gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
-  .info-label { font-size: 0.68rem; letter-spacing: 0.18em; }
-  .info-val { font-size: 1rem; }
-  .estimator-label { font-size: 0.68rem; }
+  .contact-form-wrap { padding: 100px 20px 120px; }
+  .contact-heading { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+  .contact-sub { font-size: 1rem; letter-spacing: 0.05em; margin-bottom: 24px; }
+  .info-row { gap: 20px; flex-wrap: wrap; margin-bottom: 24px; }
+  .info-label { font-size: 0.78rem; letter-spacing: 0.18em; }
+  .info-val { font-size: 1.1rem; }
+  .estimator-label { font-size: 0.78rem; }
+  .estimator-range { font-size: 1.6rem; }
   .form-row { grid-template-columns: 1fr; gap: 0; }
-  .finput { font-size: 1rem; padding: 16px 0; }
-  .fselect { font-size: 1rem; padding: 16px 0; }
-  .ftextarea { font-size: 1rem; padding: 16px 0; min-height: 80px; }
-  .fbtn { width: 100%; padding: 18px; font-size: 0.78rem; letter-spacing: 0.18em; }
+  .finput { font-size: 1.05rem; padding: 18px 0; }
+  .fselect { font-size: 1.05rem; padding: 18px 0; }
+  .ftextarea { font-size: 1.05rem; padding: 18px 0; min-height: 100px; }
+  .fbtn { width: 100%; padding: 20px; font-size: 0.85rem; letter-spacing: 0.18em; }
   .contact-footer-bar { padding: 14px 20px; justify-content: center; }
   .contact-footer-logo { display: none; }
   .contact-footer-socials { display: none; }
-  .contact-footer-copy { font-size: 0.7rem; text-align: center; }
+  .contact-footer-copy { font-size: 0.8rem; text-align: center; }
 
   /* FOOTER */
-  .footer { padding: 24px 20px; flex-direction: column; gap: 14px; text-align: center; }
-  .footer-logo-name { font-size: 0.9rem; }
-  .footer-copy { font-size: 0.72rem; }
-  .social-link { font-size: 0.75rem; }
+  .footer { padding: 32px 20px; flex-direction: column; gap: 16px; text-align: center; }
+  .footer-logo-name { font-size: 1rem; }
+  .footer-copy { font-size: 0.82rem; }
+  .social-link { font-size: 0.85rem; }
 
   /* BIRTHDAY OVERLAY */
-  .bd-message { font-size: 0.95rem; line-height: 1.9; }
-  .bd-enter { font-size: 0.72rem; padding: 14px 36px; }
+  .bd-message { font-size: 1rem; line-height: 2; }
+  .bd-enter { font-size: 0.8rem; padding: 16px 40px; }
 }
 `;
 
