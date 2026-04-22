@@ -174,9 +174,10 @@ body { background: #F2F1ED; }
 .hw-headline.animate { opacity: 1; transform: scale(1); }
 .hw-body { font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 400; color: rgba(255,255,255,0.9); line-height: 1.9; margin-bottom: 20px; text-shadow: 0 1px 14px rgba(0,0,0,0.7); }
 @media (max-width: 768px) {
-  .hw-section { padding: 80px 24px; }
-  .hw-bg-img { object-fit: contain; object-position: center top; }
-  .hw-inner { grid-template-columns: 1fr; gap: 48px; }
+  .hw-section { padding: 0; flex-direction: column; align-items: stretch; min-height: auto; overflow: visible; }
+  .hw-bg-img { position: relative; inset: unset; width: 100%; height: auto; object-fit: fill; filter: brightness(1.1) saturate(0.75); }
+  .hw-overlay { display: none; }
+  .hw-inner { padding: 60px 20px; grid-template-columns: 1fr; gap: 40px; background: #08081a; width: 100%; box-sizing: border-box; }
 }
 
 /* REVIEW BAR */
