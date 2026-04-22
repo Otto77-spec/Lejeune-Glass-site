@@ -157,7 +157,7 @@ export default function GalleryPage() {
           font-size: 0.65rem;
           letter-spacing: 0.35em;
           text-transform: uppercase;
-          color: #C8A96E;
+          color: rgba(255,255,255,0.5);
           margin: 0 0 1.5rem;
           opacity: 0;
           transform: translateY(12px);
@@ -178,7 +178,7 @@ export default function GalleryPage() {
         .glry-hero-rule {
           width: 48px;
           height: 1px;
-          background: #C8A96E;
+          background: rgba(255,255,255,0.2);
           border: none;
           margin: 2.25rem auto 0;
           opacity: 0;
@@ -219,7 +219,7 @@ export default function GalleryPage() {
         .glry-heading-rule {
           width: 36px;
           height: 1px;
-          background: #C8A96E;
+          background: rgba(10,10,10,0.15);
           border: none;
           margin: 0;
           display: block;
@@ -229,6 +229,7 @@ export default function GalleryPage() {
         .glry-masonry {
           columns: 3;
           column-gap: 1.1rem;
+          perspective: 1000px;
         }
         .glry-item {
           break-inside: avoid;
@@ -242,13 +243,12 @@ export default function GalleryPage() {
           opacity: 1;
           transform: translateY(0);
         }
+        /* tilt-panel override — only activate once revealed, don't re-hide */
+        .glry-item.tilt-panel { transition: opacity 0.65s ease, transform 0.4s ease; }
+        .glry-item.tilt-panel.revealed:hover { transform: rotateY(4deg) scale(1.02); }
         .glry-item img {
           width: 100%;
           display: block;
-          transition: transform 0.55s ease;
-        }
-        .glry-item:hover img {
-          transform: scale(1.035);
         }
 
         /* ── Black transition panel ── */
@@ -264,7 +264,7 @@ export default function GalleryPage() {
           width: 3px;
           height: 3px;
           border-radius: 50%;
-          background: #C8A96E;
+          background: rgba(255,255,255,0.25);
           opacity: 0.35;
         }
 
@@ -328,7 +328,7 @@ export default function GalleryPage() {
                     return (
                       <div
                         key={filename}
-                        className="glry-item"
+                        className="glry-item tilt-panel"
                         ref={(el) => addRef(el, itemRefIdxStart + imgIdx)}
                         style={{ transitionDelay: `${imgIdx * 0.07}s` }}
                       >

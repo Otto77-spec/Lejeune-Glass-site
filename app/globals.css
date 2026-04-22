@@ -4,6 +4,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Shared 3D tilt hover — add to any image panel parent */
+.tilt-panel {
+  transition: transform 0.4s ease;
+}
+.tilt-panel:hover {
+  transform: rotateY(4deg) scale(1.02);
+}
+
 @theme {
 --color-warm-white: #F8F6F2;
 --color-gold: #C8A96E;

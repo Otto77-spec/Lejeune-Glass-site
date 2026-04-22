@@ -18,7 +18,7 @@ const reviews = [
     stars: 5,
     text: "LeJeune did such a great job on 3 luxury showers in my home. I would highly recommend them and will be using the company for all of my shower and glass needs moving forward. Professional and very responsive during the entire process from ordering to install.",
     initials: "KC",
-    color: "#C8A96E",
+    color: "#555",
   },
   {
     name: "Sharon P.",
@@ -55,7 +55,7 @@ const reviews = [
     stars: 5,
     text: "Very good experience. The appointment for the estimate was on time and professional. The price was very reasonable — much lower than one competitor. The installers did a great job. Very good turnaround time from estimate to installation. I would definitely do business with this company again.",
     initials: "RP",
-    color: "#C8A96E",
+    color: "#555",
   },
 ];
 
@@ -89,7 +89,7 @@ const PlatformIcon = ({ platform }) => {
 const StarRating = ({ count = 5 }) => (
   <div style={{ display: "flex", gap: "3px" }}>
     {Array.from({ length: count }).map((_, i) => (
-      <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="#C8A96E">
+      <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="#888">
         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
       </svg>
     ))}
@@ -102,7 +102,7 @@ const reviewStyles = `
   to { opacity: 1; transform: translateY(0); }
 }
 .review-card {
-  background: white;
+  background: #F2F1ED;
   border: 1px solid rgba(18,18,18,0.08);
   padding: 36px 32px;
   display: flex;
@@ -134,7 +134,7 @@ const reviewStyles = `
   gap: 48px;
   flex-wrap: wrap;
   padding: 32px 48px;
-  background: white;
+  background: #F2F1ED;
   border-top: 1px solid rgba(18,18,18,0.06);
   border-bottom: 1px solid rgba(18,18,18,0.06);
   margin-bottom: 64px;
@@ -163,7 +163,7 @@ export default function ReviewsSection() {
   const [hovered, setHovered] = useState(null);
 
   return (
-    <section id="reviews" style={{ background: "#F8F6F2", padding: "0 0 80px" }}>
+    <section id="reviews" style={{ background: "#F2F1ED", padding: "0 0 80px" }}>
       <style>{reviewStyles}</style>
 
       {/* Trust Bar */}
@@ -187,7 +187,7 @@ export default function ReviewsSection() {
         <div className="trust-item">
           <div style={{ display: "flex", gap: "4px" }}>
             {[...Array(5)].map((_, i) => (
-              <svg key={i} width="18" height="18" viewBox="0 0 24 24" fill="#C8A96E">
+              <svg key={i} width="18" height="18" viewBox="0 0 24 24" fill="#888">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
             ))}
@@ -210,13 +210,13 @@ export default function ReviewsSection() {
 
       {/* Section Header */}
       <div style={{ textAlign: "center", marginBottom: "56px", padding: "0 24px" }}>
-        <div style={{ fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.35em", textTransform: "uppercase", color: "#C8A96E", marginBottom: "14px" }}>
+        <div style={{ fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.35em", textTransform: "uppercase", color: "#555", marginBottom: "14px" }}>
           Client Reviews
         </div>
         <h2 style={{ fontFamily: "Cormorant Garamond, Georgia, serif", fontSize: "clamp(2.2rem, 4vw, 3.4rem)", fontWeight: 300, letterSpacing: "0.03em", color: "#121212", lineHeight: 1.15, margin: 0 }}>
           What Our Clients Say
         </h2>
-        <div style={{ width: "48px", height: "1px", background: "#C8A96E", margin: "20px auto 0" }} />
+        <div style={{ width: "48px", height: "1px", background: "rgba(18,18,18,0.1)", margin: "20px auto 0" }} />
       </div>
 
       {/* Review Cards Grid */}
@@ -269,7 +269,7 @@ export default function ReviewsSection() {
                 width: "40px", height: "40px", borderRadius: "50%",
                 background: r.color, display: "flex", alignItems: "center", justifyContent: "center",
                 fontFamily: "Montserrat, sans-serif", fontSize: "0.72rem", fontWeight: 600,
-                color: r.color === "#121212" ? "white" : r.color === "#C8A96E" ? "#121212" : "white",
+                color: "white",
                 letterSpacing: "0.05em", flexShrink: 0
               }}>
                 {r.initials}

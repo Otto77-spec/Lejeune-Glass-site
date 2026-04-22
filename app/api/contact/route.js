@@ -1,15 +1,14 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
   const { name, phone, email, project, details } = await request.json();
 
   try {
     // Email to Justin (notification)
     await resend.emails.send({
      from: 'LeJeune Glass <onboarding@resend.dev>',
-      to: 'lejeuneshowerglass@gmail.com',
+      to: 'justinlejeune422@gmail.com',
       subject: `New Estimate Request from ${name}`,
       html: `
         <h2>New Estimate Request</h2>
