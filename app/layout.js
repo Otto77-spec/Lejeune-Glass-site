@@ -18,6 +18,11 @@ title: "LeJeune Glass | Custom Frameless Glass Atlanta",
 description: "Premium frameless glass shower enclosures, stair railings, wine rooms, and architectural glass installations across Metro Atlanta.",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({ children }) {
 return (
 <html lang="en">
