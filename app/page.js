@@ -335,11 +335,12 @@ body { background: #F2F1ED; }
   .hw-section { padding: 0; flex-direction: column; align-items: stretch; min-height: auto; overflow: visible; }
   .hw-bg-img { position: relative; inset: unset; width: 100%; height: auto; object-fit: fill; filter: brightness(1.1) saturate(0.75); }
   .hw-overlay { display: none; }
-  .hw-inner { padding: 60px 20px; grid-template-columns: 1fr; gap: 40px; background: #08081a; width: 100%; box-sizing: border-box; }
-  .hw-label { font-size: 0.82rem; letter-spacing: 0.25em; margin-bottom: 20px; }
-  .hw-headline { font-size: clamp(2rem, 8vw, 2.8rem); margin-bottom: 24px; }
-  .hw-item { font-size: 0.95rem; letter-spacing: 0.15em; padding: 14px 0; }
-  .hw-body { font-size: 1.05rem; line-height: 1.85; }
+  .hw-inner { padding: 60px 20px; grid-template-columns: 1fr; gap: 40px; background: #F2F1ED; width: 100%; box-sizing: border-box; }
+  .hw-label { font-size: 0.82rem; letter-spacing: 0.25em; margin-bottom: 20px; color: #555; }
+  .hw-headline { font-size: clamp(2rem, 8vw, 2.8rem); margin-bottom: 24px; color: #0a0a0a; text-shadow: none; }
+  .hw-item { font-size: 0.95rem; letter-spacing: 0.15em; padding: 14px 0; color: #0a0a0a; text-shadow: none; border-bottom-color: rgba(10,10,10,0.12); }
+  .hw-item:first-child { border-top-color: rgba(10,10,10,0.12); }
+  .hw-body { font-size: 1.05rem; line-height: 1.85; color: #444; text-shadow: none; }
   .hw-watermark { display: none; }
 
   /* REVIEWS */
