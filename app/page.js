@@ -81,9 +81,9 @@ body { background: #F2F1ED; }
 /* STATEMENT */
 .statement { background: #F2F1ED; padding: 48px 64px; display: flex; align-items: center; justify-content: center; gap: 40px; }
 .statement-text { font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 4vw, 2.5rem); font-weight: 500; color: #0a0a0a; line-height: 1.05; max-width: 700px; width: 100%; margin: 0 auto; text-align: center; }
-@keyframes stmtReveal { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+@keyframes stmtReveal { from { opacity: 0; transform: translateY(18px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
 .stmt-line { display: block; opacity: 0; }
-.stmt-line.animate { animation: stmtReveal 0.35s ease forwards; }
+.stmt-line.animate { animation: stmtReveal 0.9s cubic-bezier(0.22,1,0.36,1) forwards; }
 .statement-tag { font-family: 'Montserrat', sans-serif; font-size: 0.52rem; font-weight: 600; letter-spacing: 0.38em; text-transform: uppercase; color: rgba(10,10,10,0.3); writing-mode: vertical-rl; flex-shrink: 0; }
 
 /* PROCESS */
@@ -459,7 +459,7 @@ export default function LeJeuneGlass() {
       if (!entry.isIntersecting) return;
       observer.disconnect();
       el.querySelectorAll('.stmt-line').forEach((line, i) => {
-        setTimeout(() => line.classList.add('animate'), i * 150);
+        setTimeout(() => line.classList.add('animate'), i * 380);
       });
     }, { threshold: 0.4 });
     observer.observe(el);
@@ -654,9 +654,8 @@ export default function LeJeuneGlass() {
       <section className="statement">
         <span className="statement-tag">LeJeune Glass</span>
         <div className="statement-text" ref={stmtTextRef}>
-          <span className="stmt-line">Seven years.</span>
-          <span className="stmt-line">Five hundred projects.</span>
-          <span className="stmt-line">One standard: yours.</span>
+          <span className="stmt-line">We don't just install glass.</span>
+          <span className="stmt-line">We redefine spaces.</span>
         </div>
         <span className="statement-tag">Metro Atlanta</span>
       </section>
