@@ -180,16 +180,16 @@ body { background: #F2F1ED; }
 .review-attr { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-top: 16px; }
 
 /* CONTACT */
-.contact-section { position: relative; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-.contact-form-reveal { opacity: 1; width: 100%; max-width: 560px; }
-.contact-video-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
-.contact-form-wrap { position: relative; z-index: 1; width: 100%; display: flex; justify-content: center; padding: 84px 24px 48px; overflow-y: auto; max-height: 100vh; }
-.contact-footer-bar { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; padding: 16px 48px; background: rgba(0,0,0,0.35); }
-.contact-footer-logo { font-family: 'Bodoni Moda', 'Playfair Display', Georgia, serif; font-size: 0.72rem; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; }
-.contact-footer-copy { font-family: 'Montserrat', sans-serif; font-size: 0.54rem; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; }
-.contact-footer-socials { display: flex; gap: 14px; }
-.contact-footer-social { font-family: 'Montserrat', sans-serif; font-size: 0.54rem; letter-spacing: 0.2em; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
-.contact-footer-social:hover { color: white; }
+.contact-section { position: relative; min-height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
+.contact-form-reveal { opacity: 0; width: 100%; max-width: 560px; transition: opacity 0.7s ease, transform 0.7s ease; }
+.contact-video-bg { position: absolute; inset: -10%; width: 120%; height: 120%; object-fit: cover; z-index: 0; transform-origin: center center; }
+.contact-form-wrap { position: relative; z-index: 1; width: 100%; display: flex; justify-content: center; padding: 100px 24px 48px; flex: 1; }
+.contact-footer-bar { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; background: rgba(0,0,0,0.55); border-top: 1px solid rgba(255,255,255,0.08); }
+.contact-footer-logo { font-family: 'Bodoni Moda', 'Playfair Display', Georgia, serif; font-size: 0.75rem; color: rgba(255,255,255,0.6); letter-spacing: 0.08em; }
+.contact-footer-copy { font-family: 'Montserrat', sans-serif; font-size: 0.62rem; color: rgba(255,255,255,0.45); letter-spacing: 0.08em; }
+.contact-footer-socials { display: flex; gap: 10px; }
+.contact-footer-social { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.2em; color: rgba(255,255,255,0.7); text-decoration: none; border: 1px solid rgba(255,255,255,0.3); padding: 8px 16px; transition: color 0.2s, border-color 0.2s; }
+.contact-footer-social:hover { color: white; border-color: rgba(255,255,255,0.8); }
 .contact-heading { font-family: 'Bodoni Moda', 'Playfair Display', Georgia, serif; font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 400; color: white; line-height: 1.2; margin-bottom: 8px; transition: all 0.4s ease; }
 .contact-sub { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 400; color: rgba(255,255,255,0.65); letter-spacing: 0.1em; margin-bottom: 28px; }
 .info-row { display: flex; gap: 32px; margin-bottom: 24px; padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,0.15); }
@@ -350,8 +350,7 @@ body { background: #F2F1ED; }
   .review-attr { font-size: 0.85rem; letter-spacing: 0.15em; margin-top: 12px; }
 
   /* CONTACT */
-  .contact-section { height: auto; min-height: 100vh; }
-  .contact-form-wrap { padding: 100px 20px 120px; }
+  .contact-form-wrap { padding: 100px 20px 60px; }
   .contact-heading { font-size: clamp(1.8rem, 7vw, 2.4rem); }
   .contact-sub { font-size: 1rem; letter-spacing: 0.05em; margin-bottom: 24px; }
   .info-row { gap: 20px; flex-wrap: wrap; margin-bottom: 24px; }
@@ -364,10 +363,10 @@ body { background: #F2F1ED; }
   .fselect { font-size: 1.05rem; padding: 18px 0; }
   .ftextarea { font-size: 1.05rem; padding: 18px 0; min-height: 100px; }
   .fbtn { width: 100%; padding: 20px; font-size: 0.85rem; letter-spacing: 0.18em; }
-  .contact-footer-bar { padding: 14px 20px; justify-content: center; }
+  .contact-footer-bar { padding: 16px 20px; flex-wrap: wrap; gap: 12px; justify-content: center; }
   .contact-footer-logo { display: none; }
-  .contact-footer-socials { display: none; }
-  .contact-footer-copy { font-size: 0.8rem; text-align: center; }
+  .contact-footer-social { font-size: 0.75rem; padding: 10px 20px; }
+  .contact-footer-copy { font-size: 0.72rem; text-align: center; width: 100%; order: 1; }
 
   /* FOOTER */
   .footer { padding: 32px 20px; flex-direction: column; gap: 16px; text-align: center; }
@@ -419,6 +418,7 @@ export default function LeJeuneGlass() {
   const contactWrapRef = useRef(null);
   const contactSectionRef = useRef(null);
   const contactContentRef = useRef(null);
+  const contactVideoRef = useRef(null);
 
   // BIRTHDAY OVERLAY
   useEffect(() => {
@@ -528,24 +528,24 @@ export default function LeJeuneGlass() {
 
   // CONTACT SECTION REVEAL
   useEffect(() => {
-    const isMobile = window.innerWidth < 768;
-    if (isMobile) {
-      const section = contactSectionRef.current;
-      if (!section) return;
-      const obs = new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) { section.classList.add('mobile-revealed'); obs.disconnect(); }
-      }, { threshold: 0.1 });
-      obs.observe(section);
-      return () => obs.disconnect();
-    }
     let rafId;
     const update = () => {
-      if (!contactWrapRef.current || !contactSectionRef.current) return;
-      const rect = contactWrapRef.current.getBoundingClientRect();
-      const progress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / window.innerHeight));
-      contactSectionRef.current.style.height = `${15 + 85 * progress}vh`;
-      if (contactContentRef.current) {
-        contactContentRef.current.style.opacity = progress >= 0.6 ? '1' : '0';
+      const section = contactSectionRef.current;
+      const video = contactVideoRef.current;
+      const content = contactContentRef.current;
+      if (!section) return;
+      const rect = section.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height * 0.5)));
+      if (video) {
+        const scale = 1.18 - 0.18 * progress;
+        video.style.transform = `scale(${scale})`;
+        video.style.transition = 'transform 0.1s linear';
+      }
+      if (content) {
+        content.style.opacity = progress >= 0.25 ? '1' : '0';
+        content.style.transform = `translateY(${progress >= 0.25 ? 0 : 24}px)`;
+        content.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
       }
     };
     const onScroll = () => { cancelAnimationFrame(rafId); rafId = requestAnimationFrame(update); };
@@ -848,7 +848,7 @@ export default function LeJeuneGlass() {
       {/* CONTACT */}
       {/* ============================================================ */}
       <section id="contact" className="contact-section" ref={contactSectionRef}>
-        <video className="contact-video-bg" src="/videos/contact-video.mp4" autoPlay loop muted playsInline />
+        <video ref={contactVideoRef} className="contact-video-bg" src="/videos/contact-video.mp4" autoPlay loop muted playsInline />
         <div className="contact-form-wrap">
         <div className="contact-form-reveal" ref={contactContentRef}>
           {submitted ? (
