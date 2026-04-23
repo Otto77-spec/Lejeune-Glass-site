@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react';
 const CATEGORIES = [
   {
     id: 'railings', slug: 'railings', label: 'Railings',
-    images: ['railings-1.jpg','railings-2.jpg','railings-3.jpg','railings-4.jpg','railings-5.jpg','railings-6.jpg','railings-7.jpg'],
+    images: ['railings-1.jpg','railings-2.jpg','railings-3.jpg','railings-4.jpg','railings-5.jpg','railings-6.jpg','railings-7.jpg','railings-8.jpg','railings-9.jpg'],
   },
   {
     id: 'wine-rooms', slug: 'wine-rooms', label: 'Wine Rooms',
