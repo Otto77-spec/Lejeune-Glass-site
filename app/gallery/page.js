@@ -244,7 +244,7 @@ export default function GalleryPage() {
             className={`glry-hero-eyebrow`}
             ref={(el) => addRef(el, refIndex++)}
           >
-            LeJeune Glass &amp; Mirror
+            LeJeune Glass
           </p>
           <h1
             className="glry-hero-title"
