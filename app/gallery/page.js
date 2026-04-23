@@ -1,102 +1,57 @@
 'use client';
 
-import { Quando } from 'next/font/google';
 import { useEffect, useRef } from 'react';
-
-const quando = Quando({ weight: '400', subsets: ['latin'] });
 
 const CATEGORIES = [
   {
-    id: 'railings',
-    label: 'Railings',
-    images: [
-      'railings-1.jpg',
-      'railings-2.jpg',
-      'railings-3.jpg',
-      'railings-4.jpg',
-      'railings-5.jpg',
-      'railings-6.jpg',
-      'railings-7.jpg',
-    ],
+    id: 'railings', slug: 'railings', label: 'Railings',
+    images: ['railings-1.jpg','railings-2.jpg','railings-3.jpg','railings-4.jpg','railings-5.jpg','railings-6.jpg','railings-7.jpg'],
   },
   {
-    id: 'wine-rooms',
-    label: 'Wine Rooms',
-    images: [
-      '20200108_141210 (1).jpg',
-      'FB_IMG_1775989371265.jpg',
-    ],
+    id: 'wine-rooms', slug: 'wine-rooms', label: 'Wine Rooms',
+    images: ['20200108_141210 (1).jpg','FB_IMG_1775989371265.jpg'],
   },
   {
-    id: 'sauna-gym',
-    label: 'Sauna & Gym',
-    images: [
-      'Tempered_Glass_For_Sauna.jpg',
-      'images_c1466200-1c96-45.jpg',
-    ],
+    id: 'sauna-gym', slug: 'sauna-gym', label: 'Sauna & Gym',
+    images: ['Tempered_Glass_For_Sauna.jpg','images_c1466200-1c96-45.jpg'],
   },
   {
-    id: 'commercial',
-    label: 'Commercial',
-    images: [
-      'commercial-1.jpg',
-      'commercial-2.jpg',
-      'commercial-3.jpg',
-      'commercial-4.jpg',
-    ],
+    id: 'commercial', slug: 'commercial', label: 'Commercial',
+    images: ['commercial-1.jpg','commercial-2.jpg','commercial-3.jpg','commercial-4.jpg'],
   },
   {
-    id: 'open-concept',
-    label: 'Open Concept',
-    images: [
-      'open-concept-1.jpeg',
-      'open-concept-2.jpg',
-      'open-concept-3.jpg',
-      'open-concept-4.jpg',
-    ],
+    id: 'open-concept', slug: 'open-concept', label: 'Open Concept',
+    images: ['open-concept-1.jpeg','open-concept-2.jpg','open-concept-3.jpg','open-concept-4.jpg'],
   },
   {
-    id: '90-degree',
-    label: '90° Glass',
-    images: [
-      '90-degree-1.jpg',
-      '90-degree-3.jpg',
-      '90-degree-4.jpg',
-      '90-degree-5.jpg',
-      '90-degree-6.jpg',
-      '90-degree-7.jpg',
-      '90-degree-8.jpg',
-      '90-degree-9.jpg',
-    ],
+    id: '90-degree', slug: 'neo-angle', label: '90° Glass',
+    images: ['90-degree-1.jpg','90-degree-3.jpg','90-degree-4.jpg','90-degree-5.jpg','90-degree-6.jpg','90-degree-7.jpg','90-degree-8.jpg','90-degree-9.jpg'],
   },
   {
-    id: 'barn-door',
-    label: 'Barn Door',
-    images: [
-      'barn-door-1.jpg',
-      'barn-door-2.jpg',
-      'barn-door-3.jpg',
-      'barn-door-4.jpg',
-      'barn-door-5.jpg',
-    ],
+    id: 'barn-door', slug: 'barn-door', label: 'Barn Door',
+    images: ['barn-door-1.jpg','barn-door-2.jpg','barn-door-3.jpg','barn-door-4.jpg','barn-door-5.jpg'],
   },
   {
-    id: 'inline',
-    label: 'Inline',
-    images: [
-      'inline-1.jpeg',
-      'inline-2.jpg',
-      'inline-3.jpg',
-      'inline-4.jpg',
-      'inline-5.jpg',
-      'inline-6.jpg',
-      'inline-7.jpg',
-    ],
+    id: 'inline', slug: 'inline', label: 'Inline',
+    images: ['inline-1.jpeg','inline-2.jpg','inline-3.jpg','inline-4.jpg','inline-5.jpg','inline-6.jpg','inline-7.jpg'],
   },
 ];
 
 export default function GalleryPage() {
   const revealRefs = useRef([]);
+
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '');
+    if (hash) {
+      setTimeout(() => {
+        const el = document.getElementById(hash);
+        if (el) {
+          el.classList.add('revealed');
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 400);
+    }
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -164,11 +119,12 @@ export default function GalleryPage() {
           transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
         }
         .glry-hero-title {
+          font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
           font-size: clamp(3.5rem, 9vw, 7rem);
           color: #F2F1ED;
           letter-spacing: 0.12em;
           text-transform: uppercase;
-          font-weight: 400;
+          font-weight: 300;
           margin: 0;
           line-height: 1;
           opacity: 0;
@@ -208,9 +164,10 @@ export default function GalleryPage() {
           margin-bottom: 2.5rem;
         }
         .glry-heading {
+          font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
           font-size: clamp(1.75rem, 4.5vw, 3.25rem);
           color: #0a0a0a;
-          font-weight: 400;
+          font-weight: 300;
           letter-spacing: 0.1em;
           text-transform: uppercase;
           margin: 0 0 0.75rem;
@@ -225,15 +182,13 @@ export default function GalleryPage() {
           display: block;
         }
 
-        /* ── Masonry grid ── */
-        .glry-masonry {
-          columns: 3;
-          column-gap: 1.1rem;
-          perspective: 1000px;
+        /* ── Equal grid ── */
+        .glry-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.1rem;
         }
         .glry-item {
-          break-inside: avoid;
-          margin-bottom: 1.1rem;
           overflow: hidden;
           opacity: 0;
           transform: translateY(18px);
@@ -243,11 +198,10 @@ export default function GalleryPage() {
           opacity: 1;
           transform: translateY(0);
         }
-        /* tilt-panel override — only activate once revealed, don't re-hide */
-        .glry-item.tilt-panel { transition: opacity 0.65s ease, transform 0.4s ease; }
-        .glry-item.tilt-panel.revealed:hover { transform: rotateY(4deg) scale(1.02); }
         .glry-item img {
           width: 100%;
+          aspect-ratio: 4 / 3;
+          object-fit: cover;
           display: block;
         }
 
@@ -270,11 +224,11 @@ export default function GalleryPage() {
 
         /* ── Responsive ── */
         @media (max-width: 1024px) {
-          .glry-masonry { columns: 2; }
+          .glry-grid { grid-template-columns: repeat(2, 1fr); }
           .glry-section { padding: 4.5rem 5vw; }
         }
         @media (max-width: 560px) {
-          .glry-masonry { columns: 1; }
+          .glry-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
           .glry-hero { padding: 7rem 1.5rem 3.5rem; }
           .glry-section { padding: 3.5rem 1.25rem; }
           .glry-back { left: 1.25rem; }
@@ -293,7 +247,7 @@ export default function GalleryPage() {
             LeJeune Glass &amp; Mirror
           </p>
           <h1
-            className={`glry-hero-title ${quando.className}`}
+            className="glry-hero-title"
             ref={(el) => addRef(el, refIndex++)}
           >
             Gallery
@@ -312,23 +266,24 @@ export default function GalleryPage() {
           return (
             <div key={cat.id}>
               <section
+                id={cat.slug}
                 className="glry-section"
                 ref={(el) => addRef(el, sectionRefIdx)}
               >
                 <div className="glry-heading-wrap">
-                  <h2 className={`glry-heading ${quando.className}`}>
+                  <h2 className="glry-heading">
                     {cat.label}
                   </h2>
                   <hr className="glry-heading-rule" />
                 </div>
 
-                <div className="glry-masonry">
+                <div className="glry-grid">
                   {cat.images.map((filename, imgIdx) => {
                     const src = `/images/projects/${cat.id}/${encodeURIComponent(filename)}`;
                     return (
                       <div
                         key={filename}
-                        className="glry-item tilt-panel"
+                        className="glry-item"
                         ref={(el) => addRef(el, itemRefIdxStart + imgIdx)}
                         style={{ transitionDelay: `${imgIdx * 0.07}s` }}
                       >
