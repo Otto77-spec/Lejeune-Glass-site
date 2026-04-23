@@ -108,6 +108,7 @@ body { background: #F2F1ED; }
 .about-heading { font-family: 'Bodoni Moda', 'Playfair Display', Georgia, serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 400; color: #0a0a0a; line-height: 1.15; margin-bottom: 36px; }
 .about-body { font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 400; color: #333; line-height: 1.95; margin-bottom: 18px; }
 .about-closing { font-family: 'Bodoni Moda', 'Playfair Display', Georgia, serif; font-size: 1rem; font-weight: 400; font-style: italic; color: #555; line-height: 1.6; margin-top: 8px; }
+.about-veteran { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-montserrat, 'Montserrat', sans-serif); font-size: 0.6rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #0a0a0a; border: 1px solid rgba(10,10,10,0.25); padding: 6px 14px; margin-bottom: 28px; }
 
 /* GALLERY LIST */
 .gallery-section { background: #F2F1ED; padding: 100px 64px; }
@@ -780,9 +781,10 @@ export default function LeJeuneGlass() {
           <img src="/images/about-1.jpg" alt="LeJeune Glass team at work" />
         </div>
         <div className="about-content" ref={aboutTextRef}>
+          <div className="about-veteran">★ Veteran-Owned &amp; Operated</div>
           <div className="eyebrow">◆ About LeJeune Glass</div>
           <h2 className="about-heading">The Young. The Relentless.<br />The Ever-Moving.</h2>
-          <p className="about-body">LeJeune — the young — is more than a name. It's a posture. A constant momentum that carries through every project, every panel, every space we touch.</p>
+          <p className="about-body">LeJeune — the young — is the family name behind every panel we place, and a posture we live by: relentless forward momentum that carries through every project, every space we touch.</p>
           <p className="about-body">We are your local confidant in architectural glass — a single point of contact who handles design, project management, and installation with the precision of a craftsman and the vision of a creative.</p>
           <p className="about-body">What directs us is simple: you. Your space, your need, your standard. We exist to place that satisfactory check mark on the spaces that matter most in your life.</p>
           <p className="about-body">We believe creative process generates momentum. Momentum generates movement. And movement — the right kind — transforms a room into a statement.</p>
