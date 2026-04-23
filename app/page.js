@@ -138,7 +138,7 @@ body { background: #F2F1ED; }
 .marquee-dot { color: #C8A96E; opacity: 0.5; padding: 0; }
 
 /* SERVICES */
-.services-section { background: #0a0a0a; padding: 100px 0 120px; overflow: hidden; position: relative; }
+.services-section { background: #0a0a0a; padding: 100px 0 60px; overflow: hidden; position: relative; }
 .services-bg-word { position: absolute; bottom: -2rem; left: 50%; transform: translateX(-50%); font-family: 'Bebas Neue', sans-serif; font-size: clamp(8rem, 22vw, 20rem); color: rgba(255,255,255,0.025); white-space: nowrap; pointer-events: none; user-select: none; line-height: 1; letter-spacing: 0.05em; }
 .services-header { padding: 0 64px 80px; }
 .services-eyebrow-line { height: 1px; background: rgba(255,255,255,0.12); width: 0; margin-bottom: 20px; }
@@ -159,8 +159,8 @@ body { background: #F2F1ED; }
 .svc-row:hover .svc-tag { color: rgba(200,169,110,0.6); border-color: rgba(200,169,110,0.25); }
 
 /* HARDWARE */
-.hw-section { position: relative; background: #08081a; min-height: 620px; display: flex; align-items: center; padding: 100px 64px; overflow: hidden; }
-.hw-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(1.18) saturate(0.72); z-index: 0; }
+.hw-section { position: relative; background: #08081a; min-height: 620px; display: flex; align-items: center; padding: 100px 64px; overflow: hidden; margin-top: -1px; }
+.hw-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% center; filter: brightness(1.1) saturate(0.72); z-index: 0; clip-path: inset(14% 8.4% round 2px); transform: scale(1.08); transform-origin: center; will-change: clip-path, transform; }
 .hw-overlay { position: absolute; inset: 0; background: rgba(8,8,20,0.28); z-index: 1; }
 .hw-inner { position: relative; z-index: 2; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
 .hw-watermark { position: absolute; left: -8px; bottom: -20px; font-family: 'Bebas Neue', sans-serif; font-size: clamp(7rem, 16vw, 14rem); color: rgba(255,255,255,0.05); line-height: 1; pointer-events: none; z-index: 0; white-space: nowrap; user-select: none; }
@@ -413,6 +413,8 @@ export default function LeJeuneGlass() {
   const aboutTextRef = useRef(null);
   const hwSectionRef = useRef(null);
   const hwHeadlineRef = useRef(null);
+  const hwImgRef = useRef(null);
+  const magnetRef = useRef(null);
   const servicesRef = useRef(null);
   const servicesLineRef = useRef(null);
   const contactWrapRef = useRef(null);
@@ -486,6 +488,52 @@ export default function LeJeuneGlass() {
     }, { threshold: 0.15 });
     observer.observe(section);
     return () => observer.disconnect();
+  }, []);
+
+  // HARDWARE PHOTO CLIP-PATH EXPAND ON SCROLL (desktop only)
+  useEffect(() => {
+    if (window.innerWidth < 768) return;
+    let rafId;
+    const update = () => {
+      const img = hwImgRef.current;
+      const section = hwSectionRef.current;
+      if (!img || !section) return;
+      const rect = section.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh * 0.9)));
+      const inset = (1 - progress) * 14;
+      img.style.clipPath = `inset(${inset}% ${inset * 0.6}% round 2px)`;
+      img.style.transform = `scale(${1 + (1 - progress) * 0.08})`;
+    };
+    const onScroll = () => { cancelAnimationFrame(rafId); rafId = requestAnimationFrame(update); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    update();
+    return () => { window.removeEventListener('scroll', onScroll); cancelAnimationFrame(rafId); };
+  }, []);
+
+  // MAGNET BUTTON
+  useEffect(() => {
+    const btn = magnetRef.current;
+    if (!btn) return;
+    const inner = btn.querySelector('.fbtn-inner');
+    const onMove = (e) => {
+      const rect = btn.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = (e.clientX - cx) * 0.35;
+      const dy = (e.clientY - cy) * 0.35;
+      btn.style.transform = `translate(${dx}px, ${dy}px)`;
+      if (inner) inner.style.transform = `translate(${dx * 0.5}px, ${dy * 0.5}px)`;
+    };
+    const onLeave = () => {
+      btn.style.transform = '';
+      btn.style.transition = 'transform 0.6s cubic-bezier(0.23,1,0.32,1)';
+      if (inner) { inner.style.transform = ''; inner.style.transition = 'transform 0.6s cubic-bezier(0.23,1,0.32,1)'; }
+      setTimeout(() => { btn.style.transition = ''; if (inner) inner.style.transition = ''; }, 600);
+    };
+    btn.addEventListener('mousemove', onMove);
+    btn.addEventListener('mouseleave', onLeave);
+    return () => { btn.removeEventListener('mousemove', onMove); btn.removeEventListener('mouseleave', onLeave); };
   }, []);
 
   // PARALLAX — about section opposing drift
@@ -820,7 +868,7 @@ export default function LeJeuneGlass() {
       {/* HARDWARE */}
       {/* ============================================================ */}
       <section id="products" className="hw-section" ref={hwSectionRef}>
-        <img src="/images/hardware-2.jpg" alt="" className="hw-bg-img" />
+        <img ref={hwImgRef} src="/images/hardware-2.jpg" alt="" className="hw-bg-img" />
         <div className="hw-overlay" />
         <div className="hw-inner">
           <div className="hw-list">
@@ -882,7 +930,11 @@ export default function LeJeuneGlass() {
                 </select>
                 <input className="finput" name="date" placeholder="Preferred Consultation Date" type="date" value={formData.date} onChange={handleChange} style={{ width: "100%", marginBottom: "10px" }} />
                 <textarea className="ftextarea" name="message" placeholder="Tell us about your vision..." value={formData.message} onChange={handleChange} required />
-                <button className="fbtn" type="submit" disabled={loading}>{loading ? "Sending..." : "Get a Quote"}</button>
+                <div ref={magnetRef} style={{ display: 'inline-block' }}>
+                  <button className="fbtn" type="submit" disabled={loading}>
+                    <span className="fbtn-inner">{loading ? "Sending..." : "Get a Quote"}</span>
+                  </button>
+                </div>
               </form>
             </>
           )}
