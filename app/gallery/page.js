@@ -25,7 +25,7 @@ const CATEGORIES = [
   },
   {
     id: '90-degree', slug: 'neo-angle', label: '90° Glass',
-    images: ['90-degree-1.jpg','90-degree-3.jpg','90-degree-4.jpg','90-degree-5.jpg','90-degree-6.jpg','90-degree-7.jpg','90-degree-8.jpg','90-degree-9.jpg'],
+    images: ['90-degree-1.jpg','90-degree-3.jpg','90-degree-4.jpg','90-degree-5.jpg','90-degree-6.jpg','90-degree-7.jpg','90-degree-8.jpg','90-degree-9.jpg','90-degree-10.jpg'],
   },
   {
     id: 'barn-door', slug: 'barn-door', label: 'Barn Door',
