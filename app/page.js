@@ -709,7 +709,7 @@ export default function LeJeuneGlass() {
           {[
             { num: "01", name: "Consultation", desc: "We come to you. On-site analysis, precision measurement, and expert planning at your location." },
             { num: "02", name: "Design", desc: "Ideas become precise plans. Every detail reviewed and approved by you before we proceed." },
-            { num: "03", name: "Fabrication", desc: "Every panel cut and finished by our own hands — never subcontracted, never compromised." },
+            { num: "03", name: "Fabrication", desc: "Every panel sourced and inspected to our exact spec — never subcontracted, never compromised." },
             { num: "04", name: "Installation", desc: "Fast, clean, and precise. Scheduling available as soon as a few days out." },
           ].map((s, i) => (
             <div key={i} className="step reveal" ref={addReveal}>
