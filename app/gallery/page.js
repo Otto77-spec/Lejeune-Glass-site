@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react';
 const CATEGORIES = [
   {
     id: 'railings', slug: 'railings', label: 'Railings',
-    images: ['railings-1.jpg','railings-2.jpg','railings-3.jpg','railings-4.jpg','railings-5.jpg','railings-6.jpg','railings-7.jpg','railings-8.jpg','railings-9.jpg'],
+    images: ['railings-1.jpg','railings-2.jpg','railings-3.jpg','railings-4.jpg','railings-5.jpg','railings-6.jpg','railings-7.jpg','railings-8.jpg','railings-9.jpg','railings-10.jpg'],
   },
   {
     id: 'wine-rooms', slug: 'wine-rooms', label: 'Wine Rooms',
@@ -33,7 +33,7 @@ const CATEGORIES = [
   },
   {
     id: 'inline', slug: 'inline', label: 'Inline',
-    images: ['inline-1.jpeg','inline-2.jpg','inline-3.jpg','inline-4.jpg','inline-5.jpg','inline-6.jpg','inline-7.jpg'],
+    images: ['inline-1.jpeg','inline-2.jpg','inline-3.jpg','inline-4.jpg','inline-5.jpg','inline-6.jpg','inline-7.jpg','inline-8.jpg'],
   },
 ];
 
