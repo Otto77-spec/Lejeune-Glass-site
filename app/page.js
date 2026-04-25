@@ -164,9 +164,11 @@ body { background: #F2F1ED; }
 .svc-row:hover .svc-tag { color: rgba(200,169,110,0.6); border-color: rgba(200,169,110,0.25); }
 
 /* HARDWARE */
-.hw-section { position: sticky; top: 0; height: 100vh; z-index: 0; display: flex; align-items: center; padding: 100px 64px; overflow: hidden; margin-top: -1px; }
+.hw-section { position: sticky; top: 0; height: 100vh; z-index: 0; overflow: hidden; margin-top: -1px; }
+.hw-scroll-layer { position: relative; z-index: 1; margin-top: -100vh; }
 .hw-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% center; filter: brightness(1.1) saturate(0.72); z-index: 0; }
-.hw-overlay { position: absolute; inset: 0; background: rgba(8,8,20,0.28); z-index: 1; }
+.hw-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.3); z-index: 1; }
+.hw-content { min-height: 100vh; display: flex; align-items: center; padding: 100px 64px; }
 .hw-inner { position: relative; z-index: 2; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
 .hw-watermark { position: absolute; left: -8px; bottom: -20px; font-family: 'Bebas Neue', sans-serif; font-size: clamp(7rem, 16vw, 14rem); color: rgba(255,255,255,0.05); line-height: 1; pointer-events: none; z-index: 0; white-space: nowrap; user-select: none; }
 .hw-list { position: relative; z-index: 2; }
@@ -337,10 +339,12 @@ body { background: #F2F1ED; }
   .svc-tag { display: none; }
 
   /* HARDWARE */
-  .hw-section { position: relative; top: auto; height: auto; min-height: auto; padding: 0; flex-direction: column; align-items: stretch; overflow: visible; }
-  .hw-bg-img { position: relative; inset: unset; width: 100%; height: auto; object-fit: fill; filter: brightness(1.1) saturate(0.75); }
-  .hw-overlay { display: none; }
-  .hw-inner { padding: 60px 20px; grid-template-columns: 1fr; gap: 40px; background: #F2F1ED; width: 100%; box-sizing: border-box; }
+  .hw-section { position: relative; top: auto; height: 60vw; min-height: 260px; overflow: hidden; }
+  .hw-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hw-overlay { background: rgba(0,0,0,0.35); }
+  .hw-scroll-layer { margin-top: 0; }
+  .hw-content { min-height: auto; padding: 60px 20px; }
+  .hw-inner { padding: 0; grid-template-columns: 1fr; gap: 40px; background: #F2F1ED; width: 100%; box-sizing: border-box; }
   .hw-label { font-size: 0.82rem; letter-spacing: 0.25em; margin-bottom: 20px; color: #555; }
   .hw-headline { font-size: clamp(2rem, 8vw, 2.8rem); margin-bottom: 24px; color: #0a0a0a; text-shadow: none; }
   .hw-item { font-size: 0.95rem; letter-spacing: 0.15em; padding: 14px 0; color: #0a0a0a; text-shadow: none; border-bottom-color: rgba(10,10,10,0.12); }
@@ -853,28 +857,29 @@ export default function LeJeuneGlass() {
       {/* ============================================================ */}
       {/* HARDWARE */}
       {/* ============================================================ */}
-      <section id="products" className="hw-section" ref={hwSectionRef}>
+      <section id="products" className="hw-section">
         <img ref={hwImgRef} src="/images/hardware-2.jpg" alt="" className="hw-bg-img" />
         <div className="hw-overlay" />
-        <div className="hw-inner">
-          <div className="hw-list">
-            <div className="hw-watermark">HARDWARE</div>
-            {["Hinges & Pivots", "Handles & Pulls", "Clips & Clamps", "Channels & Tracks", "Door Sweeps & Seals", "Mounting Brackets"].map((item, i) => (
-              <div key={i} className="hw-item">{item}</div>
-            ))}
-          </div>
-          <div className="hw-right">
-            <div className="hw-label">◆ Hardware</div>
-            <h2 className="hw-headline" ref={hwHeadlineRef}>Premium Glass<br />Hardware</h2>
-            <p className="hw-body">Every installation finished with precision hardware, selected for longevity and elegance.</p>
-            <p className="hw-body">From brushed nickel to matte black — we source and supply the hardware that completes your space. Full catalog coming soon.</p>
-          </div>
-        </div>
       </section>
 
-
-      {/* ============================================================ */}
-      <div style={{ position: 'relative', zIndex: 1 }}>
+      {/* Text + all following sections scroll over the locked photo */}
+      <div className="hw-scroll-layer">
+        <div className="hw-content" ref={hwSectionRef}>
+          <div className="hw-inner">
+            <div className="hw-list">
+              <div className="hw-watermark">HARDWARE</div>
+              {["Hinges & Pivots", "Handles & Pulls", "Clips & Clamps", "Channels & Tracks", "Door Sweeps & Seals", "Mounting Brackets"].map((item, i) => (
+                <div key={i} className="hw-item">{item}</div>
+              ))}
+            </div>
+            <div className="hw-right">
+              <div className="hw-label">◆ Hardware</div>
+              <h2 className="hw-headline" ref={hwHeadlineRef}>Premium Glass<br />Hardware</h2>
+              <p className="hw-body">Every installation finished with precision hardware, selected for longevity and elegance.</p>
+              <p className="hw-body">From brushed nickel to matte black — we source and supply the hardware that completes your space. Full catalog coming soon.</p>
+            </div>
+          </div>
+        </div>
       {/* REVIEWS */}
       {/* ============================================================ */}
       <ReviewsSection />
