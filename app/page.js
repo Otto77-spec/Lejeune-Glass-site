@@ -139,7 +139,11 @@ body { background: #F2F1ED; }
 .marquee-dot { color: #C8A96E; opacity: 0.5; padding: 0; }
 
 /* SERVICES */
-.services-section { background: #0a0a0a; padding: 100px 0 60px; overflow: hidden; position: relative; }
+.services-section { background: url('/images/projects/open-concept-1.jpeg') center/cover fixed; padding: 100px 0 60px; overflow: hidden; position: relative; }
+.services-section::before { content: ''; position: absolute; inset: 0; background: rgba(4,4,16,0.82); z-index: 0; pointer-events: none; }
+.services-bg-word { z-index: 1; }
+.services-header { position: relative; z-index: 1; }
+.svc-row { position: relative; z-index: 1; }
 .services-bg-word { position: absolute; bottom: -2rem; left: 50%; transform: translateX(-50%); font-family: 'Bebas Neue', sans-serif; font-size: clamp(8rem, 22vw, 20rem); color: rgba(255,255,255,0.025); white-space: nowrap; pointer-events: none; user-select: none; line-height: 1; letter-spacing: 0.05em; }
 .services-header { padding: 0 64px 80px; }
 .services-eyebrow-line { height: 1px; background: rgba(255,255,255,0.12); width: 0; margin-bottom: 20px; }
@@ -160,8 +164,8 @@ body { background: #F2F1ED; }
 .svc-row:hover .svc-tag { color: rgba(200,169,110,0.6); border-color: rgba(200,169,110,0.25); }
 
 /* HARDWARE */
-.hw-section { position: relative; background: #08081a; min-height: 620px; display: flex; align-items: center; padding: 100px 64px; overflow: hidden; margin-top: -1px; }
-.hw-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% center; filter: brightness(1.1) saturate(0.72); z-index: 0; clip-path: inset(14% 8.4% round 2px); transform: scale(1.08); transform-origin: center; will-change: clip-path, transform; }
+.hw-section { position: sticky; top: 0; height: 100vh; z-index: 0; display: flex; align-items: center; padding: 100px 64px; overflow: hidden; margin-top: -1px; }
+.hw-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% center; filter: brightness(1.1) saturate(0.72); z-index: 0; }
 .hw-overlay { position: absolute; inset: 0; background: rgba(8,8,20,0.28); z-index: 1; }
 .hw-inner { position: relative; z-index: 2; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
 .hw-watermark { position: absolute; left: -8px; bottom: -20px; font-family: 'Bebas Neue', sans-serif; font-size: clamp(7rem, 16vw, 14rem); color: rgba(255,255,255,0.05); line-height: 1; pointer-events: none; z-index: 0; white-space: nowrap; user-select: none; }
@@ -333,7 +337,7 @@ body { background: #F2F1ED; }
   .svc-tag { display: none; }
 
   /* HARDWARE */
-  .hw-section { padding: 0; flex-direction: column; align-items: stretch; min-height: auto; overflow: visible; }
+  .hw-section { position: relative; top: auto; height: auto; min-height: auto; padding: 0; flex-direction: column; align-items: stretch; overflow: visible; }
   .hw-bg-img { position: relative; inset: unset; width: 100%; height: auto; object-fit: fill; filter: brightness(1.1) saturate(0.75); }
   .hw-overlay { display: none; }
   .hw-inner { padding: 60px 20px; grid-template-columns: 1fr; gap: 40px; background: #F2F1ED; width: 100%; box-sizing: border-box; }
@@ -491,26 +495,6 @@ export default function LeJeuneGlass() {
     return () => observer.disconnect();
   }, []);
 
-  // HARDWARE PHOTO CLIP-PATH EXPAND ON SCROLL (desktop only)
-  useEffect(() => {
-    if (window.innerWidth < 768) return;
-    let rafId;
-    const update = () => {
-      const img = hwImgRef.current;
-      const section = hwSectionRef.current;
-      if (!img || !section) return;
-      const rect = section.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh * 0.9)));
-      const inset = (1 - progress) * 14;
-      img.style.clipPath = `inset(${inset}% ${inset * 0.6}% round 2px)`;
-      img.style.transform = `scale(${1 + (1 - progress) * 0.08})`;
-    };
-    const onScroll = () => { cancelAnimationFrame(rafId); rafId = requestAnimationFrame(update); };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    update();
-    return () => { window.removeEventListener('scroll', onScroll); cancelAnimationFrame(rafId); };
-  }, []);
 
   // MAGNET BUTTON
   useEffect(() => {
@@ -890,6 +874,7 @@ export default function LeJeuneGlass() {
 
 
       {/* ============================================================ */}
+      <div style={{ position: 'relative', zIndex: 1 }}>
       {/* REVIEWS */}
       {/* ============================================================ */}
       <ReviewsSection />
@@ -951,6 +936,7 @@ export default function LeJeuneGlass() {
           </div>
         </div>
       </section>
+      </div>{/* end z-index:1 wrapper over sticky hw photo */}
     </>
   );
 }
