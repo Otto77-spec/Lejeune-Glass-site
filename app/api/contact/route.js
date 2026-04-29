@@ -7,7 +7,7 @@ export async function POST(request) {
   try {
     // Email to Justin (notification)
     await resend.emails.send({
-     from: 'LeJeune Glass <onboarding@resend.dev>',
+     from: 'LeJeune Glass <noreply@lejeuneshowerglass.com>',
       to: 'justinlejeune422@gmail.com',
       subject: `New Estimate Request from ${name}`,
       html: `
@@ -22,7 +22,7 @@ export async function POST(request) {
 
     // Confirmation email to client
     await resend.emails.send({
-      from: 'LeJeune Glass <onboarding@resend.dev>',
+      from: 'LeJeune Glass <noreply@lejeuneshowerglass.com>',
       to: email,
       subject: 'We received your estimate request!',
       html: `
