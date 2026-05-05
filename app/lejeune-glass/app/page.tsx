@@ -1,19 +1,20 @@
 "use client";
 import { useState, useEffect } from "react";
+import StructuredData from "./components/StructuredData";
 
 const projects = [
-  { title: "Zero-Edge Enclosure", src: "/images/projects/shower-1.jpg" },
-  { title: "Spa-Style Corner Shower", src: "/images/projects/shower-2.jpg" },
-  { title: "Open Walk-In Design", src: "/images/projects/shower-3.jpg" },
-  { title: "Floating Glass Staircase", src: "/images/projects/stairs-1.jpg" },
-  { title: "Modern Panel Railing", src: "/images/projects/stairs-2.jpg" },
-  { title: "Cantilevered Glass Rail", src: "/images/projects/stairs-3.jpg" },
-  { title: "Climate-Controlled Cellar", src: "/images/projects/wine-1.jpg" },
-  { title: "Full-Wall Display Room", src: "/images/projects/wine-2.jpg" },
-  { title: "Custom Frameless Cellar", src: "/images/projects/wine-3.jpg" },
-  { title: "Executive Office Partition", src: "/images/projects/office-1.jpg" },
-  { title: "Commercial Glass Facade", src: "/images/projects/office-2.jpg" },
-  { title: "Open-Plan Glass Divider", src: "/images/projects/office-3.jpg" },
+  { title: "Zero-Edge Enclosure", src: "/images/projects/shower-1.jpg", alt: "Frameless zero-edge glass shower enclosure installed in Atlanta-area home" },
+  { title: "Spa-Style Corner Shower", src: "/images/projects/shower-2.jpg", alt: "Custom spa-style corner frameless glass shower — Metro Atlanta residence" },
+  { title: "Open Walk-In Design", src: "/images/projects/shower-3.jpg", alt: "Open walk-in frameless glass shower installation, Atlanta GA" },
+  { title: "Floating Glass Staircase", src: "/images/projects/stairs-1.jpg", alt: "Custom frameless glass stair railing — floating staircase design, Atlanta" },
+  { title: "Modern Panel Railing", src: "/images/projects/stairs-2.jpg", alt: "Modern glass panel stair railing installation — Metro Atlanta home" },
+  { title: "Cantilevered Glass Rail", src: "/images/projects/stairs-3.jpg", alt: "Cantilevered frameless glass railing system — residential project Atlanta GA" },
+  { title: "Climate-Controlled Cellar", src: "/images/projects/wine-1.jpg", alt: "Custom glass wine room enclosure with climate control — Atlanta residence" },
+  { title: "Full-Wall Display Room", src: "/images/projects/wine-2.jpg", alt: "Floor-to-ceiling glass wine display room — luxury home Metro Atlanta" },
+  { title: "Custom Frameless Cellar", src: "/images/projects/wine-3.jpg", alt: "Custom frameless glass wine cellar installation — Atlanta area" },
+  { title: "Executive Office Partition", src: "/images/projects/office-1.jpg", alt: "Frameless glass office partition — commercial installation Atlanta" },
+  { title: "Commercial Glass Facade", src: "/images/projects/office-2.jpg", alt: "Commercial glass facade installation — Atlanta business" },
+  { title: "Open-Plan Glass Divider", src: "/images/projects/office-3.jpg", alt: "Open-plan frameless glass room divider — commercial space Metro Atlanta" },
 ];
 
 const services = [
@@ -279,6 +280,7 @@ export default function LeJeuneGlass() {
 
   return (
     <>
+      <StructuredData />
       <style>{pageStyles}</style>
 
       {showOverlay && (
@@ -355,12 +357,18 @@ export default function LeJeuneGlass() {
       <section id="hero" className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden" style={{background: '#121212'}}>
         <img
           src="/images/hero.jpg"
-          alt="LeJeune Glass hero"
+          alt="Custom frameless glass shower and railing installations by LeJeune Glass, Metro Atlanta"
           className="absolute inset-0 w-full h-full object-cover opacity-50 rounded-none"
         />
         <div className="absolute inset-0 rounded-none" style={{ background: "linear-gradient(to bottom, rgba(18,18,18,0.15) 0%, rgba(18,18,18,0.5) 55%, rgba(18,18,18,0.92) 100%)" }} />
         <div className="relative z-10 text-center max-w-2xl px-6 w-full">
-          <p style={{ fontFamily: "Cormorant Garamond, Georgia, serif", fontSize: "clamp(1.3rem, 2.5vw, 1.7rem)", fontWeight: 300, fontStyle: "italic", letterSpacing: "0.15em", color: "rgba(255,255,255,0.92)", marginBottom: "20px", lineHeight: 1.7 }}>
+          <h1 style={{ fontFamily: "Cormorant Garamond, Georgia, serif", fontSize: "clamp(2.5rem, 7vw, 5.5rem)", fontWeight: 300, letterSpacing: "0.08em", textTransform: "uppercase", color: "#F2F1ED", lineHeight: 1.1, marginBottom: "12px" }}>
+            Custom Frameless Glass
+            <br />
+            Showers &amp; Railings
+            <span style={{ fontSize: "0.55em", letterSpacing: "0.25em", color: "rgba(242,241,237,0.5)", display: "block", marginTop: "0.5rem" }}>Metro Atlanta, GA</span>
+          </h1>
+          <p style={{ fontFamily: "Cormorant Garamond, Georgia, serif", fontSize: "clamp(1.1rem, 2vw, 1.4rem)", fontWeight: 300, fontStyle: "italic", letterSpacing: "0.15em", color: "rgba(255,255,255,0.75)", marginBottom: "20px", lineHeight: 1.7 }}>
             Frameless Glass, Designed to Elevate Your Space.
           </p>
           <div style={{ width: "56px", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,110,0.8), transparent)", margin: "0 auto 48px" }} />
@@ -396,7 +404,7 @@ export default function LeJeuneGlass() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-screen-xl mx-auto">
           {projects.map((p, i) => (
             <div key={i} className="project-card group relative overflow-hidden rounded cursor-pointer" style={{ height: "380px", background: '#1e1e1e' }}>
-              <img src={p.src} alt={p.title} className="w-full h-full object-cover block transition-transform duration-[600ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-105" />
+              <img src={p.src} alt={p.alt} className="w-full h-full object-cover block transition-transform duration-[600ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-105" />
               <div className="project-hover">
                 <div className="project-gold-line" />
                 <div className="project-title-text">{p.title}</div>
