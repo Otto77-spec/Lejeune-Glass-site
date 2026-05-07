@@ -535,10 +535,16 @@ export default function LeJeuneGlass() {
         if (aboutTextRef.current) aboutTextRef.current.style.transform = '';
         return;
       }
+      // fluid.glass-style staggered scroll: text starts lower (CSS padding-top),
+      // both drift up at slightly different rates for layered depth
       const rect = aboutPanelRef.current.getBoundingClientRect();
-      const offset = rect.top + rect.height / 2 - window.innerHeight / 2;
-      if (aboutImgRef.current) aboutImgRef.current.style.transform = `translateY(${offset * -0.2}px)`;
-      if (aboutTextRef.current) aboutTextRef.current.style.transform = `translateY(${offset * 0.2}px)`;
+      const vh = window.innerHeight;
+      const total = vh + rect.height;
+      const t = Math.max(0, Math.min(1, (vh - rect.top) / total));
+      const textShift = -t * 120;
+      const photoShift = t * 120;
+      if (aboutImgRef.current) aboutImgRef.current.style.transform = `translateY(${photoShift}px)`;
+      if (aboutTextRef.current) aboutTextRef.current.style.transform = `translateY(${textShift}px)`;
     };
     const onScroll = () => { cancelAnimationFrame(rafId); rafId = requestAnimationFrame(update); };
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -765,9 +771,6 @@ export default function LeJeuneGlass() {
       {/* ABOUT */}
       {/* ============================================================ */}
       <section className="about-section" ref={aboutPanelRef}>
-        <div className="about-photo" ref={aboutImgRef}>
-          <img src="/images/about-1.jpg" alt="LeJeune Glass team at work" />
-        </div>
         <div className="about-content" ref={aboutTextRef}>
           <div className="about-veteran">★ Veteran-Owned &amp; Operated</div>
           <div className="eyebrow">◆ About LeJeune Glass</div>
@@ -776,7 +779,10 @@ export default function LeJeuneGlass() {
           <p className="about-body">We are your local confidant in architectural glass — a single point of contact who handles design, project management, and installation with the precision of a craftsman and the vision of a creative.</p>
           <p className="about-body">What directs us is simple: you. Your space, your need, your standard. We exist to place that satisfactory check mark on the spaces that matter most in your life.</p>
           <p className="about-body">We believe creative process generates momentum. Momentum generates movement. And movement — the right kind — transforms a room into a statement.</p>
-          <p className="about-closing">We're not just here to install glass. We're here to grow with you.</p>
+          <p className="about-closing">We&apos;re not just here to install glass. We&apos;re here to grow with you.</p>
+        </div>
+        <div className="about-photo" ref={aboutImgRef}>
+          <img src="/images/about-1.jpg" alt="LeJeune Glass team at work" />
         </div>
       </section>
 
